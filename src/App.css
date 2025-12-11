@@ -1,0 +1,175 @@
+@import "tailwindcss";
+.root {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #e0efff;
+  border-bottom: 2px solid #b8b8b8;
+  height: 80px;
+  width: 100%;
+}
+.pig {
+  width: 80px;
+  margin-left: 50px;
+}
+.tabsContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.tab {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+  background-color: white;
+  border-radius: 15px;
+  height: 20px;
+  margin-left: 40px;
+  cursor: pointer;
+}
+.dashBoardIcon {
+  width: 16px;
+  margin-right: 5px;
+}
+.rightSideHeader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 60px;
+}
+.darkButtonContainer {
+  display: block;
+  margin-right: 30px;
+  position: relative;
+  width: 60px;
+  height: 30px;
+  border-radius: 160px;
+  background: #8dc2ff;
+  transition: 0.5s;
+  box-shadow: inset 0 8px 60px rgba(0, 0, 0, 0.1),
+    inset 0 8px 8px rgba(0, 0, 0, 0.1), inset 0 -4px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+.darkButtonBall {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 30px;
+  height: 30px;
+  background: white;
+  border-radius: 50%;
+  transform: scale(0.9);
+  transition: 0.5s;
+}
+.darkIcon {
+  left: 35px;
+  top: 5px;
+  position: absolute;
+  width: 20px;
+  transform: scale(0.9);
+  transition: 0.5s;
+}
+.moonIcon {
+  position: absolute;
+  width: 20px;
+  top: 5px;
+  left: 5px;
+  display: none;
+  transform: scale(0.9);
+  transition: 0.5s;
+}
+.profileContainer {
+  border-radius: 50%;
+  background-color: white;
+  width: 40px;
+  cursor: pointer;
+}
+.darkChange {
+  background-color: #484848;
+  .tab {
+    color: black;
+    background-color: #e0efff;
+  }
+  .profileContainer {
+  }
+  .darkButtonBall {
+    left: 30px;
+  }
+  .darkIcon {
+    display: none;
+  }
+  .moonIcon {
+    display: block;
+  }
+  .header {
+    background-color: #808080;
+    border-bottom: 2px solid #e0efff;
+  }
+  .calendarDiv {
+    background-color: #e0efff;
+  }
+}
+.calendarContainer {
+  display: flex;
+  justify-content: space-between;
+  padding: 17px;
+}
+.goodMorning {
+  font-size: 20px;
+  font-weight: bold;
+  margin-left: 200px;
+}
+.calendarDiv {
+  display: flex;
+  border: 1px solid rgb(186, 186, 186);
+  padding: 3px;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-right: 200px;
+}
+.calendar {
+  width: 25px;
+}
+.main {
+  display: flex;
+  justify-content: space-around;
+
+  width: 85%;
+  margin: 0 auto;
+}
+.addButtContainer {
+  display: flex;
+  padding: 10px;
+  justify-content: space-between;
+  width: 500px;
+}
+.addButt {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid rgb(156, 156, 156);
+  width: 180px;
+  font-size: 20px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.plus {
+  width: 20px;
+  height: 20px;
+  margin-left: 10px;
+}
+.graph {
+  border: 1px solid blue;
+  width: 500px;
+}
+.totalContainer {
+  border: 1px solid rgb(255, 56, 89);
+  width: 500px;
+}
