@@ -3,16 +3,20 @@ export default function Tabs() {
 
   return (
     <>
-      {tabs.map((tab) => {
+      {tabs.map((tab, index) => {
         if (tab === "Dashboard") {
           return (
-            <div className="tab">
+            <div key={index} className="tab">
               <img className="dashBoardIcon" src="src\assets\dashboards.png" />{" "}
               {tab}
             </div>
           );
         } else {
-          return <div className="tab">{tab}</div>;
+          return (
+            <div key={index} className="tab">
+              {tab}
+            </div>
+          );
         }
       })}
     </>
