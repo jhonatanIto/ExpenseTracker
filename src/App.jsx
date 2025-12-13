@@ -12,6 +12,17 @@ function App() {
   const [modalDisplay, setModalDisplay] = useState("none");
   const [cardInfoModal, setCardInfoModal] = useState("none");
   const [id, setId] = useState(0);
+  const [currentId, setCurrentId] = useState();
+  const [edit, setEdit] = useState(true);
+  const [saveOrEdit, setSaveOrEdit] = useState("Edit");
+  const [deleteDisplay, setDeleteDisplay] = useState("none");
+  const [arrow, setArrow] = useState("none");
+  const [cursor, setCursor] = useState("default");
+  const [editName, setEditName] = useState();
+  const [editAmount, setEditAmount] = useState();
+  const [editCurrency, setEditCurrency] = useState();
+  const [editType, setEditType] = useState();
+
   function closeModal(e) {
     if (e.target.id === "modalBody" || e.target.id === "save") {
       setModalDisplay("none");
@@ -34,16 +45,33 @@ function App() {
     try {
       const db = saved ? JSON.parse(saved) : [];
       setCards(db);
+
+      const maxId = db.length > 0 ? Math.max(...db.map((c) => c.id)) : 0;
+      setId(maxId + 1);
     } catch (e) {
       console.log("cannot read localstorage", e);
     }
   }, []);
+
+  useEffect(() => {
+    setEditName(editName);
+  }, [editName]);
 
   return (
     <>
       <Header />
       <Calendar />
       <Main
+        setEditType={setEditType}
+        setEditCurrency={setEditCurrency}
+        setEditAmount={setEditAmount}
+        setEditName={setEditName}
+        setCursor={setCursor}
+        setDeleteDisplay={setDeleteDisplay}
+        setSaveOrEdit={setSaveOrEdit}
+        setArrow={setArrow}
+        setEdit={setEdit}
+        setCurrentId={setCurrentId}
         openCardInfo={openCardInfo}
         cards={cards}
         openModal={openModal}
@@ -59,7 +87,32 @@ function App() {
         id={id}
         setId={setId}
       />
-      <CardInfo cardInfoModal={cardInfoModal} closeModal={closeModal} />
+      <CardInfo
+        setEditType={setEditType}
+        setEditCurrency={setEditCurrency}
+        setEditAmount={setEditAmount}
+        setEditName={setEditName}
+        editType={editType}
+        editCurrency={editCurrency}
+        editAmount={editAmount}
+        editName={editName}
+        setCursor={setCursor}
+        cursor={cursor}
+        setDeleteDisplay={setDeleteDisplay}
+        deleteDisplay={deleteDisplay}
+        setSaveOrEdit={setSaveOrEdit}
+        saveOrEdit={saveOrEdit}
+        setArrow={setArrow}
+        arrow={arrow}
+        setEdit={setEdit}
+        edit={edit}
+        setCards={setCards}
+        saveData={saveData}
+        cards={cards}
+        currentId={currentId}
+        cardInfoModal={cardInfoModal}
+        closeModal={closeModal}
+      />
     </>
   );
 }

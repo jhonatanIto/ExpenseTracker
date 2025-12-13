@@ -3,12 +3,25 @@ import Graph from "./Graph";
 import TotalMenu from "./TotalMenu";
 
 export default function Main(props) {
-  const { openModal, cards } = props;
+  const {
+    openModal,
+    cards,
+    setCurrentId,
+    setEdit,
+    setArrow,
+    setSaveOrEdit,
+    setDeleteDisplay,
+    setCursor,
+    setEditName,
+    setEditAmount,
+    setEditCurrency,
+    setEditType,
+  } = props;
   return (
     <div className="main">
       <AddContainer {...props} />
-      <Graph />
       <TotalMenu {...props} />
+      <Graph />
     </div>
   );
 }

@@ -1,17 +1,41 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function CardInfo(props) {
-  const { cardInfoModal, closeModal } = props;
-  const [deleteDisplay, setDeleteDisplay] = useState("none");
-  const [edit, setEdit] = useState(true);
-  const [saveOrEdit, setSaveOrEdit] = useState("Edit");
-  const [arrow, setArrow] = useState("none");
+  const {
+    cardInfoModal,
+    closeModal,
+    currentId,
+    cards,
+    saveData,
+    setCards,
+    setEdit,
+    edit,
+    setArrow,
+    arrow,
+    setSaveOrEdit,
+    saveOrEdit,
+    deleteDisplay,
+    setDeleteDisplay,
+    cursor,
+    setCursor,
+    editName,
+    editAmount,
+    editCurrency,
+    editType,
+    setEditName,
+    setEditAmount,
+    setEditCurrency,
+    setEditType,
+  } = props;
+
   function editAll() {
     setEdit(false);
     setDeleteDisplay("block");
     setSaveOrEdit("Save");
     setArrow("auto");
+    setCursor("pointer");
   }
+
   return (
     <div
       onClick={closeModal}
@@ -25,28 +49,42 @@ export default function CardInfo(props) {
           disabled={edit}
           className="CardInfoInput "
           type="text"
-          value={"Aluguel"}
+          onChange={(e) => {
+            setEditName(e.target.value);
+          }}
+          value={editName}
         />
         <input
           disabled={edit}
           className="CardInfoInput"
           type="number"
-          value={46200}
+          onChange={(e) => {
+            setEditAmount(e.target.value);
+          }}
+          value={editAmount}
         />
         <div className="selectContainer">
           <select
-            style={{ appearance: arrow }}
+            style={{ appearance: arrow, cursor: cursor }}
             disabled={edit}
             className="selectInfo"
+            onChange={(e) => {
+              setEditCurrency(e.target.value);
+            }}
+            value={editCurrency}
           >
             <option value="JPY">JPY</option>
             <option value="USD">USD</option>
             <option value="REAL">REAL</option>
           </select>
           <select
-            style={{ appearance: arrow }}
+            style={{ appearance: arrow, cursor: cursor }}
             disabled={edit}
             className="selectInfo"
+            onChange={(e) => {
+              setEditType(e.target.value);
+            }}
+            value={editType}
           >
             <option value="Fixed">Fixed</option>
             <option value="Food">Food</option>
@@ -56,7 +94,17 @@ export default function CardInfo(props) {
         <button onClick={() => editAll()} className="buttons edit">
           {saveOrEdit}
         </button>
-        <button style={{ display: deleteDisplay }} className="buttons del">
+        <button
+          id="cardInfoBody"
+          onClick={() => {
+            let updatedCards = cards.filter((card) => card.id !== currentId);
+            saveData(updatedCards);
+            setCards(updatedCards);
+            closeModal();
+          }}
+          style={{ display: deleteDisplay }}
+          className="buttons del"
+        >
           Delete
         </button>
       </div>

@@ -69,7 +69,7 @@ export default function Modal(props) {
             if (name.value !== "" && amount.value !== "") {
               let newCard = {
                 name: name.value,
-                amount: Number(amount.value).toLocaleString("en-US"),
+                amount: amount.value,
                 currency: currency.value,
                 type: type.value,
                 expense: expenseIncome,
@@ -85,7 +85,6 @@ export default function Modal(props) {
 
               name.value = "";
               amount.value = "";
-              closeModal();
               setId((prev) => prev + 1);
               console.log(cards);
             }

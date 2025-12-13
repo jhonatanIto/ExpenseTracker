@@ -1,7 +1,21 @@
 import Cards from "./Cards";
 
 export default function AddContainer(props) {
-  const { openModal, cards, openCardInfo } = props;
+  const {
+    openModal,
+    cards,
+    openCardInfo,
+    setCurrentId,
+    setEdit,
+    setArrow,
+    setSaveOrEdit,
+    setDeleteDisplay,
+    setCursor,
+    setEditName,
+    setEditAmount,
+    setEditCurrency,
+    setEditType,
+  } = props;
 
   return (
     <div>

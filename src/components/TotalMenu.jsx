@@ -18,7 +18,10 @@ export default function TotalMenu(props) {
       <div className="totalBox">
         <div className="total">
           Total Income:
-          <div style={{ color: "rgb(69, 214, 69)" }}> {incomeTotal}</div>
+          <div style={{ color: "rgb(69, 214, 69)" }}>
+            {" "}
+            {Number(incomeTotal).toLocaleString("en-US")}
+          </div>
         </div>
         <div className="total">
           Total Expenses:

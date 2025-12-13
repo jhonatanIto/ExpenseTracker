@@ -167,7 +167,6 @@
   margin-left: 10px;
 }
 .graph {
-  border: 1px solid blue;
   width: 600px;
 }
 
@@ -295,11 +294,10 @@
   border-color: rgb(0, 89, 255);
 }
 .totalContainer {
-  border: 1px solid rgb(255, 56, 89);
+  margin-top: 0px;
   width: 600px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
 }
 .total {

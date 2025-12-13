@@ -1,10 +1,40 @@
 export default function Cards(props) {
-  const { cards, openCardInfo } = props;
+  const {
+    cards,
+    openCardInfo,
+    setCurrentId,
+    setEdit,
+    setArrow,
+    setSaveOrEdit,
+    setDeleteDisplay,
+    setCursor,
+    setEditName,
+    setEditAmount,
+    setEditCurrency,
+    setEditType,
+  } = props;
+
   return (
     <>
       {cards.map((card, index) => {
         return (
-          <div onClick={openCardInfo} key={index} className="cardBox">
+          <div
+            onClick={() => {
+              openCardInfo();
+              setCurrentId(card.id);
+              setEdit(true);
+              setArrow("none");
+              setSaveOrEdit("Edit");
+              setDeleteDisplay("none");
+              setCursor("default");
+              setEditName(card.name);
+              setEditAmount(card.amount);
+              setEditCurrency(card.currency);
+              setEditType(card.type);
+            }}
+            key={index}
+            className="cardBox"
+          >
             <div>{card.name}</div>
             <div
               style={{
@@ -16,7 +46,7 @@ export default function Cards(props) {
               className="cardGasto"
             >
               {card.expense === "Expense" ? "- " : ""}
-              {card.amount}
+              {Number(card.amount).toLocaleString("en-US")}
             </div>
           </div>
         );
