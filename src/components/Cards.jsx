@@ -31,7 +31,6 @@ export default function Cards(props) {
               setEditAmount(card.amount);
               setEditCurrency(card.currency);
               setEditType(card.type);
-              console.log(card);
             }}
             key={index}
             className="cardBox"

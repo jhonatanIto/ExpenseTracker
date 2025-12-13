@@ -22,10 +22,19 @@ function App() {
   const [editAmount, setEditAmount] = useState();
   const [editCurrency, setEditCurrency] = useState();
   const [editType, setEditType] = useState();
+  const [name, setName] = useState("");
+  const [amount, setAmount] = useState();
+  const [currency, setCurrency] = useState();
+  const [type, setType] = useState();
+  const [today, setToday] = useState("");
 
   function closeModal(e) {
     if (e.target.id === "modalBody" || e.target.id === "save") {
       setModalDisplay("none");
+      setName("");
+      setAmount("");
+      setCurrency("JPY");
+      setType("Fixed");
     } else if (e.target.id === "cardInfoBody" || e.target.id === "editSave") {
       setCardInfoModal("none");
     }
@@ -53,10 +62,14 @@ function App() {
       console.log("cannot read localstorage", e);
     }
   }, []);
-
   useEffect(() => {
-    setEditName(editName);
-  }, [editName]);
+    async function dateApi() {
+      const response = await fetch("https://api.datesapi.net/today");
+      const data = await response.json();
+      setToday(data.result);
+    }
+    dateApi();
+  }, []);
 
   return (
     <>
@@ -79,6 +92,14 @@ function App() {
         setModalDisplay={setModalDisplay}
       />
       <Modal
+        setCurrency={setCurrency}
+        setType={setType}
+        setAmount={setAmount}
+        setName={setName}
+        type={type}
+        currency={currency}
+        amount={amount}
+        name={name}
         cards={cards}
         setCards={setCards}
         expenseIncome={expenseIncome}
@@ -87,6 +108,7 @@ function App() {
         saveData={saveData}
         id={id}
         setId={setId}
+        today={today}
       />
       <CardInfo
         setCardInfoModal={setCardInfoModal}

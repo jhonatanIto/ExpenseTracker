@@ -7,7 +7,15 @@ export default function Modal(props) {
     saveData,
     id,
     setId,
-    cards,
+    today,
+    name,
+    type,
+    amount,
+    currency,
+    setName,
+    setAmount,
+    setCurrency,
+    setType,
   } = props;
 
   return (
@@ -30,28 +38,35 @@ export default function Modal(props) {
           {expenseIncome}
         </div>
         <input
-          id="nameInput"
           className="modalInput inputName"
           placeholder="name"
           type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
         />
 
         <input
-          id="amountInput"
           className="modalInput"
           placeholder="amount"
           type="number"
+          value={amount}
+          onChange={(e) => setAmount(e.target.value)}
         />
         <div className="selectContainer">
-          <select id="selecCurrency" className="select">
+          <select
+            onChange={(e) => setCurrency(e.target.value)}
+            className="select"
+            value={currency}
+          >
             <option value="JPY">JPY</option>
             <option value="USD">USD</option>
             <option value="REAL">REAL</option>
           </select>
           <select
-            id="selecType"
+            onChange={(e) => setType(e.target.value)}
             style={{ display: expenseIncome === "Expense" ? "flex" : "none" }}
             className="select"
+            value={type}
           >
             <option value="Fixed">Fixed</option>
             <option value="Food">Food</option>
@@ -62,18 +77,14 @@ export default function Modal(props) {
         <div
           id="save"
           onClick={() => {
-            let name = document.getElementById("nameInput");
-            let currency = document.getElementById("selecCurrency");
-            let amount = document.getElementById("amountInput");
-            let type = document.getElementById("selecType");
-            if (name.value !== "" && amount.value !== "") {
+            if (name !== "" && amount !== "") {
               let newCard = {
-                name: name.value,
-                amount: amount.value,
-                currency: currency.value,
-                type: type.value,
+                name: name,
+                amount: amount,
+                currency: currency,
+                type: type,
                 expense: expenseIncome,
-                date: "2025",
+                date: today || "loading",
                 id: id,
               };
 
@@ -83,10 +94,11 @@ export default function Modal(props) {
                 return updated;
               });
 
-              name.value = "";
-              amount.value = "";
+              setName("");
+              setAmount("");
+              setCurrency("JPY");
+              setType("Fixed");
               setId((prev) => prev + 1);
-              console.log(cards);
             }
           }}
           className="modalSave"
