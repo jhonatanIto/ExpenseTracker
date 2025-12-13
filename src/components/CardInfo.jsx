@@ -1,9 +1,6 @@
-import { useEffect, useState } from "react";
-
 export default function CardInfo(props) {
   const {
     cardInfoModal,
-    closeModal,
     currentId,
     cards,
     saveData,
@@ -26,6 +23,8 @@ export default function CardInfo(props) {
     setEditAmount,
     setEditCurrency,
     setEditType,
+    closeModal,
+    setCardInfoModal,
   } = props;
 
   function editAll() {
@@ -91,11 +90,37 @@ export default function CardInfo(props) {
             <option value="Other">Other</option>
           </select>
         </div>
-        <button onClick={() => editAll()} className="buttons edit">
+        <button
+          onClick={() => {
+            if (saveOrEdit === "Edit") {
+              editAll();
+            } else {
+              setCards((prev) => {
+                const updateCard = prev.map((card) =>
+                  card.id === currentId
+                    ? {
+                        ...card,
+
+                        name: editName,
+                        amount: editAmount,
+                        currency: editCurrency,
+                        type: editType,
+                      }
+                    : card
+                );
+                saveData(updateCard);
+                return updateCard;
+              });
+
+              setCardInfoModal("none");
+            }
+          }}
+          className="buttons edit"
+        >
           {saveOrEdit}
         </button>
         <button
-          id="cardInfoBody"
+          id="editSave"
           onClick={() => {
             let updatedCards = cards.filter((card) => card.id !== currentId);
             saveData(updatedCards);

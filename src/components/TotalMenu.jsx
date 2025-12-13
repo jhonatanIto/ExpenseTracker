@@ -2,7 +2,13 @@ export default function TotalMenu(props) {
   const { cards } = props;
   let expense = cards.filter((card) => card.expense === "Expense");
   let income = cards.filter((card) => card.expense === "Income");
-  let incomeTotal = income.length > 0 ? income[0].amount : "";
+  let incomeTotal =
+    income.length > 0
+      ? income.reduce((acc, item) => {
+          const clean = Number(item.amount.replace(/,/g, ""));
+          return acc + clean;
+        }, 0)
+      : "";
 
   let expenseTotal =
     expense.length > 0
@@ -11,7 +17,7 @@ export default function TotalMenu(props) {
           return acc + clean;
         }, 0)
       : "";
-  let result = Number(incomeTotal.replace(/,/g, "")) - expenseTotal;
+  let result = incomeTotal - expenseTotal;
 
   return (
     <div className="totalContainer">

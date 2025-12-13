@@ -26,10 +26,11 @@ function App() {
   function closeModal(e) {
     if (e.target.id === "modalBody" || e.target.id === "save") {
       setModalDisplay("none");
-    } else if (e.target.id === "cardInfoBody") {
+    } else if (e.target.id === "cardInfoBody" || e.target.id === "editSave") {
       setCardInfoModal("none");
     }
   }
+
   function openModal(type) {
     setModalDisplay("flex");
     setExpenseIncome(type);
@@ -88,6 +89,7 @@ function App() {
         setId={setId}
       />
       <CardInfo
+        setCardInfoModal={setCardInfoModal}
         setEditType={setEditType}
         setEditCurrency={setEditCurrency}
         setEditAmount={setEditAmount}
