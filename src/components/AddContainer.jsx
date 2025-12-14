@@ -15,6 +15,7 @@ export default function AddContainer(props) {
     setEditAmount,
     setEditCurrency,
     setEditType,
+    setDate,
   } = props;
 
   return (

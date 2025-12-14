@@ -27,6 +27,7 @@ function App() {
   const [currency, setCurrency] = useState();
   const [type, setType] = useState();
   const [today, setToday] = useState("");
+  const [date, setDate] = useState("");
 
   function closeModal(e) {
     if (e.target.id === "modalBody" || e.target.id === "save") {
@@ -76,6 +77,7 @@ function App() {
       <Header />
       <Calendar />
       <Main
+        setDate={setDate}
         setEditType={setEditType}
         setEditCurrency={setEditCurrency}
         setEditAmount={setEditAmount}
@@ -111,6 +113,7 @@ function App() {
         today={today}
       />
       <CardInfo
+        date={date}
         setCardInfoModal={setCardInfoModal}
         setEditType={setEditType}
         setEditCurrency={setEditCurrency}

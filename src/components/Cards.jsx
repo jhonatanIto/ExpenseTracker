@@ -12,6 +12,7 @@ export default function Cards(props) {
     setEditAmount,
     setEditCurrency,
     setEditType,
+    setDate,
   } = props;
 
   return (
@@ -31,6 +32,7 @@ export default function Cards(props) {
               setEditAmount(card.amount);
               setEditCurrency(card.currency);
               setEditType(card.type);
+              setDate(card.date);
             }}
             key={index}
             className="cardBox"
