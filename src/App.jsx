@@ -3,7 +3,7 @@ import "./App.css";
 import Header from "./components/Header";
 import Main from "./components/Main";
 import Modal from "./components/Modal";
-import Calendar from "./components/MorningCalendar";
+import Calendar from "./components/Calendar";
 import CardInfo from "./components/CardInfo";
 
 function App() {
@@ -75,7 +75,7 @@ function App() {
   return (
     <>
       <Header />
-      <Calendar />
+      <Calendar today={today} />
       <Main
         setDate={setDate}
         setEditType={setEditType}
