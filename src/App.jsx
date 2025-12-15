@@ -24,8 +24,8 @@ function App() {
   const [editType, setEditType] = useState();
   const [name, setName] = useState("");
   const [amount, setAmount] = useState();
-  const [currency, setCurrency] = useState();
-  const [type, setType] = useState();
+  const [currency, setCurrency] = useState("JPY");
+  const [type, setType] = useState("Fixed");
   const [today, setToday] = useState("");
   const [date, setDate] = useState("");
 
@@ -77,6 +77,7 @@ function App() {
       <Header />
       <Calendar today={today} />
       <Main
+        setType={setType}
         setDate={setDate}
         setEditType={setEditType}
         setEditCurrency={setEditCurrency}

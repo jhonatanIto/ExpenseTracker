@@ -16,6 +16,7 @@ export default function AddContainer(props) {
     setEditCurrency,
     setEditType,
     setDate,
+    setType,
   } = props;
 
   return (
@@ -29,7 +30,10 @@ export default function AddContainer(props) {
           Expense <img className="plus" src="src\assets\plus (1).png" />
         </button>
         <button
-          onClick={() => openModal("Income")}
+          onClick={() => {
+            openModal("Income");
+            setType("");
+          }}
           id="income"
           className="addButt renda"
         >

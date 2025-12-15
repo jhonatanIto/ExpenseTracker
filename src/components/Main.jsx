@@ -17,6 +17,7 @@ export default function Main(props) {
     setEditCurrency,
     setEditType,
     setDate,
+    setType,
   } = props;
   return (
     <div className="main">
