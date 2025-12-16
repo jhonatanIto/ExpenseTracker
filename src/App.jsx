@@ -7,6 +7,7 @@ import Calendar from "./components/Calendar";
 import CardInfo from "./components/CardInfo";
 
 function App() {
+  const [month, setMonth] = useState();
   const [cards, setCards] = useState([]);
   const [expenseIncome, setExpenseIncome] = useState("Expense");
   const [modalDisplay, setModalDisplay] = useState("none");
@@ -28,6 +29,7 @@ function App() {
   const [type, setType] = useState("Fixed");
   const [today, setToday] = useState("");
   const [date, setDate] = useState("");
+  const [display, setDisplay] = useState("All");
 
   function closeModal(e) {
     if (e.target.id === "modalBody" || e.target.id === "save") {
@@ -74,9 +76,12 @@ function App() {
 
   return (
     <>
-      <Header />
-      <Calendar today={today} />
+      <Header setDisplay={setDisplay} />
+      <Calendar today={today} month={month} setMonth={setMonth} />
       <Main
+        setDisplay={setDisplay}
+        display={display}
+        setExpenseIncome={setExpenseIncome}
         setType={setType}
         setDate={setDate}
         setEditType={setEditType}
@@ -95,6 +100,7 @@ function App() {
         setModalDisplay={setModalDisplay}
       />
       <Modal
+        expenseIncome={expenseIncome}
         setCurrency={setCurrency}
         setType={setType}
         setAmount={setAmount}
@@ -105,7 +111,6 @@ function App() {
         name={name}
         cards={cards}
         setCards={setCards}
-        expenseIncome={expenseIncome}
         closeModal={closeModal}
         modalDisplay={modalDisplay}
         saveData={saveData}
@@ -114,6 +119,7 @@ function App() {
         today={today}
       />
       <CardInfo
+        expenseIncome={expenseIncome}
         date={date}
         setCardInfoModal={setCardInfoModal}
         setEditType={setEditType}

@@ -13,11 +13,24 @@ export default function Cards(props) {
     setEditCurrency,
     setEditType,
     setDate,
+    setExpenseIncome,
+    display,
   } = props;
 
+  let displayThis =
+    display === "All"
+      ? cards
+      : display === "Fixed"
+      ? cards.filter((card) => card.type === "Fixed")
+      : display === "Food"
+      ? cards.filter((card) => card.type === "Food")
+      : display === "Other"
+      ? cards.filter((card) => card.type === "Other")
+      : cards;
+  console.log(display);
   return (
     <>
-      {cards.map((card, index) => {
+      {displayThis.map((card, index) => {
         return (
           <div
             onClick={() => {
@@ -33,6 +46,7 @@ export default function Cards(props) {
               setEditCurrency(card.currency);
               setEditType(card.type);
               setDate(card.date);
+              setExpenseIncome(card.expense);
             }}
             key={index}
             className="cardBox"

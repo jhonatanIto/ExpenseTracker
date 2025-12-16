@@ -1,5 +1,5 @@
 export default function TotalMenu(props) {
-  const { cards } = props;
+  const { cards, setDisplay } = props;
   let expense = cards.filter((card) => card.expense === "Expense");
   let income = cards.filter((card) => card.expense === "Income");
   let fixed = cards.filter((card) => card.type === "Fixed");
@@ -24,17 +24,33 @@ export default function TotalMenu(props) {
   return (
     <div className="totalContainer">
       <div className="totalInfoContainer">
-        <div className="moreInfo">
+        <div
+          onClick={() => setDisplay("Fixed")}
+          className="moreInfo filterExpense"
+        >
           Fixed:
-          <div>{Number(fixedTotal).toLocaleString("en-US")}</div>
+          <button onClick={() => setDisplay("Fixed")} className="filterExpense">
+            {Number(fixedTotal).toLocaleString("en-US")}
+          </button>
         </div>
-        <div className="moreInfo">
+        <div
+          onClick={() => setDisplay("Food")}
+          className="moreInfo filterExpense"
+        >
           Food:
-          <div> {Number(foodTotal).toLocaleString("en-US")}</div>
+          <button onClick={() => setDisplay("Food")} className="filterExpense">
+            {" "}
+            {Number(foodTotal).toLocaleString("en-US")}
+          </button>
         </div>
-        <div className="moreInfo">
-          Others:
-          <div>{Number(otherTotal).toLocaleString("en-US")}</div>
+        <div
+          onClick={() => setDisplay("Other")}
+          className="moreInfo filterExpense"
+        >
+          Other:
+          <button onClick={() => setDisplay("Other")} className="filterExpense">
+            {Number(otherTotal).toLocaleString("en-US")}
+          </button>
         </div>
       </div>
       <div className="totalBox">

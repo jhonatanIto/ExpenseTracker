@@ -11,10 +11,9 @@ export default function Modal(props) {
     name,
     type,
     amount,
-    currency,
     setName,
     setAmount,
-    setCurrency,
+
     setType,
   } = props;
 
@@ -54,15 +53,6 @@ export default function Modal(props) {
         />
         <div className="selectContainer">
           <select
-            onChange={(e) => setCurrency(e.target.value)}
-            className="select"
-            value={currency}
-          >
-            <option value="JPY">JPY</option>
-            <option value="USD">USD</option>
-            <option value="REAL">REAL</option>
-          </select>
-          <select
             onChange={(e) => setType(e.target.value)}
             style={{ display: expenseIncome === "Expense" ? "flex" : "none" }}
             className="select"
@@ -81,7 +71,6 @@ export default function Modal(props) {
               let newCard = {
                 name: name,
                 amount: amount,
-                currency: currency,
                 type: type,
                 expense: expenseIncome,
                 date: today || "loading",
@@ -96,7 +85,6 @@ export default function Modal(props) {
 
               setName("");
               setAmount("");
-              setCurrency("JPY");
               setType("Fixed");
               setId((prev) => prev + 1);
             }

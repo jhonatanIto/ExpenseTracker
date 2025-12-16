@@ -1,4 +1,5 @@
 import Cards from "./Cards";
+import plus from "../assets/plus (1).png";
 
 export default function AddContainer(props) {
   const {
@@ -16,7 +17,9 @@ export default function AddContainer(props) {
     setEditCurrency,
     setEditType,
     setDate,
+    setExpenseIncome,
     setType,
+    display,
   } = props;
 
   return (
@@ -27,7 +30,7 @@ export default function AddContainer(props) {
           id="expense"
           className="addButt gasto"
         >
-          Expense <img className="plus" src="src\assets\plus (1).png" />
+          Expense <img className="plus" src={plus} />
         </button>
         <button
           onClick={() => {
@@ -37,7 +40,7 @@ export default function AddContainer(props) {
           id="income"
           className="addButt renda"
         >
-          Income <img className="plus" src="src\assets\plus (1).png" />
+          Income <img className="plus" src={plus} />
         </button>
       </div>
       <div className="cardsContainer">

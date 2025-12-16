@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import sun from "../assets/brightness.png";
+import moon from "../assets/night-mode.png";
 
 export default function DarkButton() {
   const [dark, setDark] = useState(false);
@@ -19,8 +21,8 @@ export default function DarkButton() {
   return (
     <div onClick={changeDark} className="darkButtonContainer">
       <i className="darkButtonBall"></i>
-      <img className="darkIcon" src="src\assets\brightness.png" />
-      <img className="moonIcon" src="src\assets\night-mode.png" />
+      <img className="darkIcon" src={sun} />
+      <img className="moonIcon" src={moon} />
     </div>
   );
 }

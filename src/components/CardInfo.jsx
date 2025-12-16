@@ -21,11 +21,11 @@ export default function CardInfo(props) {
     editType,
     setEditName,
     setEditAmount,
-    setEditCurrency,
     setEditType,
     closeModal,
     setCardInfoModal,
     date,
+    expenseIncome,
   } = props;
 
   function editAll() {
@@ -65,20 +65,11 @@ export default function CardInfo(props) {
         />
         <div className="selectContainer">
           <select
-            style={{ appearance: arrow, cursor: cursor }}
-            disabled={edit}
-            className="selectInfo"
-            onChange={(e) => {
-              setEditCurrency(e.target.value);
+            style={{
+              appearance: arrow,
+              cursor: cursor,
+              display: expenseIncome === "Income" ? "none" : "flex",
             }}
-            value={editCurrency}
-          >
-            <option value="JPY">JPY</option>
-            <option value="USD">USD</option>
-            <option value="REAL">REAL</option>
-          </select>
-          <select
-            style={{ appearance: arrow, cursor: cursor }}
             disabled={edit}
             className="selectInfo"
             onChange={(e) => {

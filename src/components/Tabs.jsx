@@ -1,4 +1,8 @@
-export default function Tabs() {
+import dash from "../assets/dashboards.png";
+
+export default function Tabs(props) {
+  const { setDisplay } = props;
+
   const tabs = ["Dashboard", "Transactions", "Category", "Analytics"];
 
   return (
@@ -6,9 +10,8 @@ export default function Tabs() {
       {tabs.map((tab, index) => {
         if (tab === "Dashboard") {
           return (
-            <div key={index} className="tab">
-              <img className="dashBoardIcon" src="src\assets\dashboards.png" />{" "}
-              {tab}
+            <div onClick={() => setDisplay("All")} key={index} className="tab">
+              <img className="dashBoardIcon" src={dash} /> {tab}
             </div>
           );
         } else {
