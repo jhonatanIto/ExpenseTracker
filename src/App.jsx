@@ -79,6 +79,7 @@ function App() {
       <Header setDisplay={setDisplay} />
       <Calendar today={today} month={month} setMonth={setMonth} />
       <Main
+        month={month}
         setDisplay={setDisplay}
         display={display}
         setExpenseIncome={setExpenseIncome}

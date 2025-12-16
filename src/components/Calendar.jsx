@@ -33,7 +33,6 @@ export default function Calendar(props) {
     if (!today) return;
     const date = new Date(today);
     const currMonth = date.getMonth();
-
     setMonth(currMonth);
   }, [today]);
 
@@ -51,7 +50,12 @@ export default function Calendar(props) {
           <div className="calendarMonth">&nbsp;&nbsp; {monthNames[month]}</div>
         </div>
 
-        <button className="calendarArrow" onClick={() => changeMonth(1)}>
+        <button
+          className="calendarArrow"
+          onClick={() => {
+            changeMonth(1);
+          }}
+        >
           &gt;
         </button>
       </div>

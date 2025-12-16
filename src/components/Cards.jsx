@@ -15,19 +15,25 @@ export default function Cards(props) {
     setDate,
     setExpenseIncome,
     display,
+    month,
   } = props;
+
+  let displayMonth = cards?.filter((c) => {
+    let a = new Date(c.date).getMonth();
+    return a === month;
+  });
 
   let displayThis =
     display === "All"
-      ? cards
+      ? displayMonth
       : display === "Fixed"
-      ? cards.filter((card) => card.type === "Fixed")
+      ? displayMonth.filter((card) => card.type === "Fixed")
       : display === "Food"
-      ? cards.filter((card) => card.type === "Food")
+      ? displayMonth.filter((card) => card.type === "Food")
       : display === "Other"
-      ? cards.filter((card) => card.type === "Other")
-      : cards;
-  console.log(display);
+      ? displayMonth.filter((card) => card.type === "Other")
+      : displayMonth;
+
   return (
     <>
       {displayThis.map((card, index) => {

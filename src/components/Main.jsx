@@ -20,6 +20,7 @@ export default function Main(props) {
     setExpenseIncome,
     display,
     setDisplay,
+    month,
   } = props;
   return (
     <div className="main">

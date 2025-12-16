@@ -20,6 +20,7 @@ export default function AddContainer(props) {
     setExpenseIncome,
     setType,
     display,
+    month,
   } = props;
 
   return (
