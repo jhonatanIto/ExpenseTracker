@@ -406,7 +406,10 @@ body,
     cursor: pointer;
   }
   .pig {
-    margin: 0px;
+    margin-left: 5px;
+  }
+  .dashBoardIcon {
+    width: 10px;
   }
   .goodMorning {
     margin: 0;
@@ -431,16 +434,16 @@ body,
     width: 176px;
   }
   .rightSideHeader {
-    margin-right: 0;
+    margin-right: 10px;
+  }
+  .darkButtonContainer {
+    margin-right: 5px;
   }
   .darkButtonBall {
     width: 20px;
     height: 20px;
   }
-  .cardsContainer {
-  }
-  .totalContainer {
-  }
+
   .total {
     width: 330px;
   }
