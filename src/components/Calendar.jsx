@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import calendar from "../assets/calendar.png";
 
 export default function Calendar(props) {
-  const { today, month, setMonth } = props;
+  const { today, setnichi, year, month } = props;
 
   const monthNames = [
     "January",
@@ -20,20 +20,29 @@ export default function Calendar(props) {
   ];
 
   function changeMonth(direction) {
-    setMonth((prev) => {
-      let newMonth = prev + direction;
+    setnichi(({ month, year, day }) => {
+      let newMonth = month + direction;
+      let newYear = year;
 
-      if (newMonth < 0) newMonth = 11;
-      if (newMonth > 11) newMonth = 0;
-
-      return newMonth;
+      if (newMonth < 0) {
+        newMonth = 11;
+        newYear--;
+      }
+      if (newMonth > 11) {
+        newMonth = 0;
+        newYear++;
+      }
+      return { month: newMonth, year: newYear, day };
     });
   }
   useEffect(() => {
     if (!today) return;
     const date = new Date(today);
     const currMonth = date.getMonth();
-    setMonth(currMonth);
+    const currYear = date.getFullYear();
+    const currDay = date.getDate();
+
+    setnichi({ month: currMonth, year: currYear, day: currDay });
   }, [today]);
 
   return (
@@ -44,10 +53,11 @@ export default function Calendar(props) {
           {" "}
           &lt;{" "}
         </button>
-        <div className="flex">
+        <div className="flex ">
           {" "}
           <img className="calendar" src={calendar} />
           <div className="calendarMonth">&nbsp;&nbsp; {monthNames[month]}</div>
+          <div className="ml-1.5">{year}</div>
         </div>
 
         <button

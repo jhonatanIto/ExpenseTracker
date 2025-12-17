@@ -13,10 +13,18 @@ export default function Modal(props) {
     amount,
     setName,
     setAmount,
-
     setType,
+    month,
+    year,
+    day,
   } = props;
 
+  const formattedDate = [
+    year,
+    String(month + 1).padStart(2, "0"),
+    String(day).padStart(2, "0"),
+  ].join("-");
+  console.log(day);
   return (
     <div
       id="modalBody"
@@ -36,6 +44,7 @@ export default function Modal(props) {
         >
           {expenseIncome}
         </div>
+        <input className="dateInput" type="date" value={formattedDate} />
         <input
           className="modalInput inputName"
           placeholder="name"

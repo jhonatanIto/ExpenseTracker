@@ -24,7 +24,7 @@ export default function CardInfo(props) {
     setEditType,
     closeModal,
     setCardInfoModal,
-    date,
+    cardDate,
     expenseIncome,
   } = props;
 
@@ -44,7 +44,7 @@ export default function CardInfo(props) {
       className="cardInfoBody"
     >
       <div className="cardInfoContainer">
-        <div>{date}</div>
+        <div>{cardDate}</div>
         <input
           disabled={edit}
           className="CardInfoInput "

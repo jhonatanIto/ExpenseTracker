@@ -7,7 +7,12 @@ import Calendar from "./components/Calendar";
 import CardInfo from "./components/CardInfo";
 
 function App() {
-  const [month, setMonth] = useState();
+  const [{ month, year, day }, setnichi] = useState({
+    month: 0,
+    year: 0,
+    day: 0,
+  });
+
   const [cards, setCards] = useState([]);
   const [expenseIncome, setExpenseIncome] = useState("Expense");
   const [modalDisplay, setModalDisplay] = useState("none");
@@ -28,7 +33,7 @@ function App() {
   const [currency, setCurrency] = useState("JPY");
   const [type, setType] = useState("Fixed");
   const [today, setToday] = useState("");
-  const [date, setDate] = useState("");
+  const [cardDate, setCardDate] = useState("");
   const [display, setDisplay] = useState("All");
 
   function closeModal(e) {
@@ -77,14 +82,21 @@ function App() {
   return (
     <>
       <Header setDisplay={setDisplay} />
-      <Calendar today={today} month={month} setMonth={setMonth} />
+      <Calendar
+        day={day}
+        month={month}
+        year={year}
+        setnichi={setnichi}
+        today={today}
+      />
       <Main
+        year={year}
         month={month}
         setDisplay={setDisplay}
         display={display}
         setExpenseIncome={setExpenseIncome}
         setType={setType}
-        setDate={setDate}
+        setCardDate={setCardDate}
         setEditType={setEditType}
         setEditCurrency={setEditCurrency}
         setEditAmount={setEditAmount}
@@ -101,6 +113,9 @@ function App() {
         setModalDisplay={setModalDisplay}
       />
       <Modal
+        day={day}
+        year={year}
+        month={month}
         expenseIncome={expenseIncome}
         setCurrency={setCurrency}
         setType={setType}
@@ -118,10 +133,11 @@ function App() {
         id={id}
         setId={setId}
         today={today}
+        cardDate={cardDate}
       />
       <CardInfo
         expenseIncome={expenseIncome}
-        date={date}
+        cardDate={cardDate}
         setCardInfoModal={setCardInfoModal}
         setEditType={setEditType}
         setEditCurrency={setEditCurrency}

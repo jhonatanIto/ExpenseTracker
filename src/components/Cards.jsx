@@ -12,15 +12,17 @@ export default function Cards(props) {
     setEditAmount,
     setEditCurrency,
     setEditType,
-    setDate,
+    setCardDate,
     setExpenseIncome,
     display,
     month,
+    year,
   } = props;
 
   let displayMonth = cards?.filter((c) => {
-    let a = new Date(c.date).getMonth();
-    return a === month;
+    let m = new Date(c.date).getMonth();
+    let y = new Date(c.date).getFullYear();
+    return m === month && y === year;
   });
 
   let displayThis =
@@ -51,7 +53,7 @@ export default function Cards(props) {
               setEditAmount(card.amount);
               setEditCurrency(card.currency);
               setEditType(card.type);
-              setDate(card.date);
+              setCardDate(card.date);
               setExpenseIncome(card.expense);
             }}
             key={index}

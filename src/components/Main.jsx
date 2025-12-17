@@ -21,6 +21,8 @@ export default function Main(props) {
     display,
     setDisplay,
     month,
+    year,
+    setCardDate,
   } = props;
   return (
     <div className="main">

@@ -374,3 +374,6 @@
 .filterExpense:hover {
   color: red;
 }
+.dateInput::-webkit-calendar-picker-indicator {
+  display: none;
+}
