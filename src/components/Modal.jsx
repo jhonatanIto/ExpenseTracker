@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+
 export default function Modal(props) {
   const {
     modalDisplay,
@@ -7,7 +9,6 @@ export default function Modal(props) {
     saveData,
     id,
     setId,
-    today,
     name,
     type,
     amount,
@@ -19,12 +20,18 @@ export default function Modal(props) {
     day,
   } = props;
 
-  const formattedDate = [
-    year,
-    String(month + 1).padStart(2, "0"),
-    String(day).padStart(2, "0"),
-  ].join("-");
-  console.log(day);
+  const [formattedDate, setFormattedDate] = useState("");
+
+  useEffect(() => {
+    setFormattedDate(
+      [
+        year,
+        String(month + 1).padStart(2, "0"),
+        String(day).padStart(2, "0"),
+      ].join("-")
+    );
+  }, [year, month, day]);
+
   return (
     <div
       id="modalBody"
@@ -44,7 +51,14 @@ export default function Modal(props) {
         >
           {expenseIncome}
         </div>
-        <input className="dateInput" type="date" value={formattedDate} />
+        <input
+          className="dateInput"
+          type="date"
+          value={formattedDate}
+          onChange={(e) => {
+            setFormattedDate(e.target.value);
+          }}
+        />
         <input
           className="modalInput inputName"
           placeholder="name"
@@ -82,7 +96,7 @@ export default function Modal(props) {
                 amount: amount,
                 type: type,
                 expense: expenseIncome,
-                date: today || "loading",
+                date: formattedDate || "loading",
                 id: id,
               };
 

@@ -1,10 +1,20 @@
 export default function TotalMenu(props) {
-  const { cards, setDisplay } = props;
-  let expense = cards.filter((card) => card.expense === "Expense");
-  let income = cards.filter((card) => card.expense === "Income");
-  let fixed = cards.filter((card) => card.type === "Fixed");
-  let food = cards.filter((card) => card.type === "Food");
-  let other = cards.filter((card) => card.type === "Other");
+  const { cards, setDisplay, month, year } = props;
+  let expense = cards.filter(
+    (card) => card.expense === "Expense" && filterMonth(card) === month
+  );
+  let income = cards.filter(
+    (card) => card.expense === "Income" && filterMonth(card) === month
+  );
+  let fixed = cards.filter(
+    (card) => card.type === "Fixed" && filterMonth(card) === month
+  );
+  let food = cards.filter(
+    (card) => card.type === "Food" && filterMonth(card) === month
+  );
+  let other = cards.filter(
+    (card) => card.type === "Other" && filterMonth(card) === month
+  );
   function addAll(price) {
     return price.length > 0
       ? price.reduce((acc, item) => {
@@ -12,6 +22,10 @@ export default function TotalMenu(props) {
           return acc + clean;
         }, 0)
       : "";
+  }
+
+  function filterMonth(card) {
+    return new Date(card.date).getMonth();
   }
 
   let incomeTotal = addAll(income);
