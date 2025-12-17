@@ -1,9 +1,11 @@
 @import "tailwindcss";
-body {
+
+html,
+body,
+#root {
   width: 100%;
-  min-height: 100%;
+  min-height: 100vh;
   margin: 0;
-  padding: 0;
   overflow-x: hidden;
 }
 
@@ -378,23 +380,11 @@ body {
 .dateInput::-webkit-calendar-picker-indicator {
   display: none;
 }
-@media (max-width: 768px) {
-  body {
-    width: 100%;
-    min-height: 100%;
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
-  }
-  .root {
-  }
+@media (max-width: 600px) {
   .main {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-  }
-  .header {
-    width: 100%;
   }
 
   .tab {
@@ -423,14 +413,15 @@ body {
   }
   .calendarDiv {
     margin-right: 0px;
+    width: 300px;
   }
   .calendarContainer {
     justify-content: center;
     align-items: center;
   }
   .calendar {
-    width: 30px;
-    height: 30px;
+    width: 25px;
+    height: 25;
   }
   .addButtContainer {
     justify-content: space-between;
@@ -447,25 +438,38 @@ body {
     height: 20px;
   }
   .cardsContainer {
-    width: 400px;
   }
   .totalContainer {
   }
   .total {
-    width: 340px;
+    width: 330px;
   }
-  .graph {
-    width: 0px;
-  }
+
   .totalContainer {
     margin-top: 20px;
   }
   .cardsContainer {
     height: 300px;
-    width: 100%;
+    width: 90%;
     overflow-y: scroll;
   }
   .graph {
     width: 0px;
+    height: 100px;
+  }
+  .darkIcon {
+    left: 19px;
+    top: 3px;
+    width: 15px;
+  }
+  .moonIcon {
+    width: 15px;
+    top: 3px;
+    left: 1px;
+  }
+  .darkChange {
+    .darkButtonBall {
+      left: 13px;
+    }
   }
 }
