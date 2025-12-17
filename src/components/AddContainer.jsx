@@ -25,7 +25,7 @@ export default function AddContainer(props) {
   } = props;
 
   return (
-    <div>
+    <div className="flex flex-col justify-center items-center">
       <div className="addButtContainer">
         <button
           onClick={() => openModal("Expense")}

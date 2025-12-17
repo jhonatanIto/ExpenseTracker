@@ -1,10 +1,12 @@
 @import "tailwindcss";
-.root {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
+body {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
 }
+
 .header {
   display: flex;
   align-items: center;
@@ -12,7 +14,6 @@
   background: linear-gradient(90deg, #25a6ca, #e6efff);
   border-bottom: 2px solid #d9d9d9;
   height: 80px;
-  width: 100%;
 }
 .pig {
   width: 80px;
@@ -145,7 +146,6 @@
 .main {
   display: flex;
   justify-content: space-around;
-
   width: 85%;
   margin: 0 auto;
 }
@@ -173,6 +173,7 @@
 }
 .graph {
   width: 600px;
+  height: 100px;
 }
 
 .cardBox {
@@ -325,6 +326,7 @@
 }
 .cardsContainer {
   height: 900px;
+  width: 100%;
   overflow-y: scroll;
 }
 .cardsContainer::-webkit-scrollbar {
@@ -376,4 +378,87 @@
 }
 .dateInput::-webkit-calendar-picker-indicator {
   display: none;
+}
+@media (max-width: 768px) {
+  body {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+  }
+  .root {
+  }
+  .main {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .header {
+    width: 100%;
+  }
+
+  .tab {
+    font-size: 10px;
+    margin-left: 10px;
+    padding: 5px;
+  }
+  .darkButtonContainer {
+    display: block;
+    margin-right: 30px;
+    position: relative;
+    width: 45px;
+    height: 20px;
+    border-radius: 160px;
+    background: #8dc2ff;
+    transition: 0.5s;
+    box-shadow: inset 0 8px 60px rgba(0, 0, 0, 0.1),
+      inset 0 8px 8px rgba(0, 0, 0, 0.1), inset 0 -4px 4px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+  }
+  .pig {
+    margin: 0px;
+  }
+  .goodMorning {
+    margin: 0;
+  }
+  .calendarDiv {
+    margin-right: 0px;
+  }
+  .calendarContainer {
+    justify-content: center;
+    align-items: center;
+  }
+  .calendar {
+    width: 30px;
+    height: 30px;
+  }
+  .addButtContainer {
+    justify-content: space-between;
+    width: 400px;
+  }
+  .addButt {
+    width: 176px;
+  }
+  .rightSideHeader {
+    margin-right: 0;
+  }
+  .darkButtonBall {
+    width: 20px;
+    height: 20px;
+  }
+  .cardsContainer {
+    width: 400px;
+  }
+  .totalContainer {
+  }
+  .total {
+    width: 340px;
+  }
+  .graph {
+    width: 0px;
+  }
+  .totalContainer {
+    margin-top: 20px;
+  }
 }
