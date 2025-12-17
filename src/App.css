@@ -173,7 +173,6 @@ body {
 }
 .graph {
   width: 600px;
-  height: 100px;
 }
 
 .cardBox {
@@ -460,5 +459,13 @@ body {
   }
   .totalContainer {
     margin-top: 20px;
+  }
+  .cardsContainer {
+    height: 300px;
+    width: 100%;
+    overflow-y: scroll;
+  }
+  .graph {
+    width: 0px;
   }
 }
