@@ -492,9 +492,11 @@ body,
     overflow-y: scroll;
   }
   .graph {
-    width: 0px;
-    height: 100px;
+    margin-top: 30px;
+    height: 300px;
+    width: 350px;
   }
+
   .darkIcon {
     left: 19px;
     top: 3px;
