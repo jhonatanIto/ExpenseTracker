@@ -23,12 +23,17 @@ export default function Main(props) {
     month,
     year,
     setCardDate,
+    setTotalExpense,
+    totalExpense,
+    setTotalIncome,
+    totalIncome,
+    chartData,
   } = props;
   return (
     <div className="main">
       <AddContainer {...props} />
       <TotalMenu {...props} />
-      <Graph />
+      <Graph {...props} />
     </div>
   );
 }

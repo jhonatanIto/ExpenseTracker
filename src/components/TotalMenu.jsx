@@ -1,5 +1,15 @@
+import { Result } from "postcss";
+
 export default function TotalMenu(props) {
-  const { cards, setDisplay, month, year } = props;
+  const {
+    cards,
+    setDisplay,
+    month,
+    setTotalExpense,
+    totalExpense,
+    setTotalIncome,
+    totalIncome,
+  } = props;
   let expense = cards.filter(
     (card) => card.expense === "Expense" && filterMonth(card) === month
   );
@@ -28,12 +38,13 @@ export default function TotalMenu(props) {
     return new Date(card.date).getMonth();
   }
 
-  let incomeTotal = addAll(income);
-  let expenseTotal = addAll(expense);
+  setTotalExpense(addAll(expense));
+  setTotalIncome(addAll(income));
+
   let fixedTotal = addAll(fixed);
   let foodTotal = addAll(food);
   let otherTotal = addAll(other);
-  let result = incomeTotal - expenseTotal;
+  let result = totalIncome - totalExpense;
 
   return (
     <div className="totalContainer">
@@ -72,19 +83,19 @@ export default function TotalMenu(props) {
           Total Income:
           <div style={{ color: "rgb(69, 214, 69)" }}>
             {" "}
-            {Number(incomeTotal).toLocaleString("en-US")}
+            {Number(totalIncome).toLocaleString("en-US")}
           </div>
         </div>
         <div className="total">
           Total Expenses:
           <div style={{ color: "rgb(255, 56, 89)" }}>
             {" -"}
-            {expenseTotal.toLocaleString("en-US")}
+            {Number(totalExpense).toLocaleString("en-US")}
           </div>
         </div>
         <div className="total balance">
           Balace:
-          <div>{result.toLocaleString("en-US")}</div>
+          <div>{Number(result).toLocaleString("en-US")}</div>
         </div>
       </div>
     </div>

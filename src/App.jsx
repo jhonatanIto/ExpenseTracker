@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import "./App.css";
 import Header from "./components/header/Header";
 import Main from "./components/Main";
@@ -35,6 +35,74 @@ function App() {
   const [today, setToday] = useState("");
   const [cardDate, setCardDate] = useState("");
   const [display, setDisplay] = useState("All");
+  const [totalExpense, setTotalExpense] = useState();
+  const [totalIncome, setTotalIncome] = useState();
+
+  function monthlyTotal(cardss) {
+    const map = {};
+
+    cardss.forEach((card) => {
+      const date = new Date(card.date);
+      const year = date.getFullYear();
+      const month = date.getMonth();
+
+      if (!map[year]) {
+        map[year] = {};
+      }
+      if (!map[year][month]) {
+        map[year][month] = { income: 0, expense: 0 };
+      }
+
+      if (card.expense === "Income") {
+        map[year][month].income += Number(card.amount);
+      } else {
+        map[year][month].expense += Number(card.amount);
+      }
+    });
+    return map;
+  }
+  function toChartArray(map, year) {
+    return Array.from({ length: 12 }, (_, month) => ({
+      year,
+      month,
+      income: map[year]?.[month]?.income ?? 0,
+      expense: map[year]?.[month]?.expense ?? 0,
+    }));
+  }
+
+  const monthlyMap = useMemo(() => {
+    return monthlyTotal(cards);
+  }, [cards]);
+
+  const selectedYear = useMemo(() => {
+    if (!today) return new Date().getFullYear();
+    return new Date(today).getFullYear();
+  }, [today]);
+
+  const chartDataForYear = useMemo(() => {
+    return toChartArray(monthlyMap, selectedYear);
+  }, [monthlyMap, selectedYear]);
+  const last6Months = useMemo(() => {
+    return chartDataForYear.slice(-6);
+  }, [chartDataForYear]);
+
+  const chartData = useMemo(() => {
+    return {
+      labels: last6Months.map((m) => m.month + 1),
+      datasets: [
+        {
+          label: "Income",
+          backgroundColor: "rgb(141, 194, 255)",
+          data: last6Months?.map((m) => m.income) ?? [],
+        },
+        {
+          label: "Expense",
+          backgroundColor: "rgb(255, 106, 106)",
+          data: last6Months?.map((m) => m.expense) ?? [],
+        },
+      ],
+    };
+  }, [last6Months]);
 
   function closeModal(e) {
     if (e.target.id === "modalBody" || e.target.id === "save") {
@@ -90,6 +158,11 @@ function App() {
         today={today}
       />
       <Main
+        chartData={chartData}
+        totalIncome={totalIncome}
+        setTotalIncome={setTotalIncome}
+        totalExpense={totalExpense}
+        setTotalExpense={setTotalExpense}
         year={year}
         month={month}
         setDisplay={setDisplay}

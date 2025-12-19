@@ -186,7 +186,8 @@ body,
   margin-left: 10px;
 }
 .graph {
-  width: 700px;
+  margin-top: 70px;
+  width: 600px;
   justify-content: center;
   display: flex;
 }
