@@ -15,10 +15,10 @@ body,
   justify-content: space-between;
   background: linear-gradient(90deg, #25a6ca, #e6efff);
   border-bottom: 2px solid #d9d9d9;
-  height: 80px;
+  height: 120px;
 }
 .pig {
-  width: 80px;
+  width: 120px;
   margin-left: 50px;
 }
 .tabsContainer {
@@ -30,7 +30,7 @@ body,
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 16px;
+  padding: 22px;
   background-color: white;
   border-radius: 8px;
   height: 20px;
@@ -38,14 +38,14 @@ body,
   cursor: pointer;
 }
 .dashBoardIcon {
-  width: 16px;
-  margin-right: 5px;
+  width: 20px;
+  margin-right: 10px;
 }
 .rightSideHeader {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-right: 60px;
+  margin-right: 80px;
 }
 .darkButtonContainer {
   display: block;
@@ -91,7 +91,7 @@ body,
 .profileContainer {
   border-radius: 50%;
   background-color: white;
-  width: 40px;
+  width: 60px;
   cursor: pointer;
 }
 .darkChange {
@@ -100,8 +100,15 @@ body,
     color: black;
     background-color: #e0efff;
   }
-  .profileContainer {
+  .addButt {
+    background-color: #ffffff;
   }
+  .cardBox {
+    background-color: #e0e0e0;
+    box-shadow: 0 2px 5px rgba(94, 94, 94, 0.15);
+    border: none;
+  }
+
   .darkButtonBall {
     left: 30px;
   }
@@ -118,6 +125,9 @@ body,
   .calendarDiv {
     background-color: #e0efff;
   }
+  .totalContainer {
+    color: white;
+  }
 }
 .calendarContainer {
   display: flex;
@@ -125,22 +135,24 @@ body,
   padding: 17px;
 }
 .goodMorning {
-  font-size: 20px;
+  font-size: 30px;
   font-weight: bold;
   margin-left: 200px;
 }
 .calendarDiv {
   display: flex;
   justify-content: space-between;
+
   border: 1px solid rgb(186, 186, 186);
   padding: 4px;
   cursor: default;
   border-radius: 10px;
   margin-right: 200px;
-  width: 230px;
+  width: 260px;
 }
 .calendar {
-  width: 25px;
+  width: 30px;
+  height: 30px;
 }
 .calendarArrow {
   cursor: pointer;
@@ -155,16 +167,16 @@ body,
 .addButtContainer {
   display: flex;
   padding: 10px;
-  justify-content: space-between;
-  width: 600px;
+  justify-content: space-around;
+  width: 800px;
 }
 .addButt {
   display: flex;
   justify-content: center;
   align-items: center;
   border: 2px solid rgb(156, 156, 156);
-  width: 280px;
-  font-size: 20px;
+  width: 300px;
+  font-size: 25px;
   border-radius: 10px;
   cursor: pointer;
 }
@@ -174,7 +186,9 @@ body,
   margin-left: 10px;
 }
 .graph {
-  width: 600px;
+  width: 700px;
+  justify-content: center;
+  display: flex;
 }
 
 .cardBox {
@@ -182,7 +196,7 @@ body,
   justify-content: space-between;
   border: 1px solid rgb(211, 211, 211);
   border-radius: 10px;
-  padding: 10px;
+  padding: 16px;
   margin-top: 10px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
   cursor: pointer;
@@ -313,7 +327,7 @@ body,
   display: flex;
   justify-content: space-between;
   font-size: 30px;
-  width: 330px;
+  width: 400px;
 }
 .balance {
   border-top: 1px solid rgb(120, 120, 120);
@@ -326,7 +340,7 @@ body,
   margin-top: 20px;
 }
 .cardsContainer {
-  height: 900px;
+  height: 860px;
   width: 100%;
   overflow-y: scroll;
 }
@@ -365,7 +379,7 @@ body,
 .moreInfo {
   display: flex;
   justify-content: space-between;
-  width: 330px;
+  width: 400px;
   padding: 5px;
   border-bottom: 1px solid rgb(225, 225, 225);
 }
@@ -377,6 +391,9 @@ body,
 .filterExpense:hover {
   color: red;
 }
+.dateInput {
+  margin-left: 26px;
+}
 .dateInput::-webkit-calendar-picker-indicator {
   display: none;
 }
@@ -386,7 +403,24 @@ body,
     align-items: center;
     justify-content: center;
   }
-
+  .header {
+    height: 80px;
+  }
+  .profileContainer {
+    width: 40px;
+  }
+  .calendarContainer {
+    padding: 8px;
+  }
+  .goodMorning {
+    font-size: 17px;
+    font-weight: bold;
+    margin-left: 200px;
+  }
+  .calendarDiv {
+    font-size: 17px;
+    width: 260px;
+  }
   .tab {
     font-size: 10px;
     margin-left: 10px;
@@ -427,11 +461,11 @@ body,
     height: 25;
   }
   .addButtContainer {
-    justify-content: space-between;
+    justify-content: space-around;
     width: 400px;
   }
   .addButt {
-    width: 176px;
+    width: 156px;
   }
   .rightSideHeader {
     margin-right: 10px;
@@ -445,7 +479,7 @@ body,
   }
 
   .total {
-    width: 330px;
+    width: 325px;
   }
 
   .totalContainer {
@@ -474,5 +508,13 @@ body,
     .darkButtonBall {
       left: 13px;
     }
+  }
+  .cardBox {
+    padding: 10px;
+    margin-top: 10px;
+  }
+  .moreInfo {
+    width: 325px;
+    padding: 5px;
   }
 }

@@ -47,7 +47,7 @@ export default function Calendar(props) {
 
   return (
     <div className="calendarContainer">
-      <div className="goodMorning">Good morning Jhonatan!</div>
+      <div className="goodMorning">Good morning!</div>
       <div className="calendarDiv">
         <button className="calendarArrow" onClick={() => changeMonth(-1)}>
           {" "}

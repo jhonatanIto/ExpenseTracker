@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import sun from "../assets/brightness.png";
-import moon from "../assets/night-mode.png";
+import sun from "../../assets/brightness.png";
+import moon from "../../assets/night-mode.png";
 
 export default function DarkButton() {
   const [dark, setDark] = useState(false);

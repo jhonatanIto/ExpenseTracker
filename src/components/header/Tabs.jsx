@@ -1,4 +1,4 @@
-import dash from "../assets/dashboards.png";
+import dash from "../../assets/dashboards.png";
 
 export default function Tabs(props) {
   const { setDisplay } = props;
