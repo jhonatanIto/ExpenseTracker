@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import calendar from "../../../assets/calendar.png";
 
 export default function Calendar(props) {
-  const { today, setnichi, year, month } = props;
+  const { setnichi, year, month, today } = props;
 
   const monthNames = [
     "January",

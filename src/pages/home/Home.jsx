@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
 import "../../App.css";
-import Header from "./header/Header";
 import Main from "./Main";
 import Modal from "./Modal";
 import Calendar from "./header/Calendar";
@@ -30,7 +29,6 @@ function Home() {
   const [editType, setEditType] = useState();
   const [name, setName] = useState("");
   const [amount, setAmount] = useState();
-  const [currency, setCurrency] = useState("JPY");
   const [type, setType] = useState("Fixed");
   const [today, setToday] = useState("");
   const [cardDate, setCardDate] = useState("");
@@ -109,7 +107,6 @@ function Home() {
       setModalDisplay("none");
       setName("");
       setAmount("");
-      setCurrency("JPY");
       setType("Fixed");
     } else if (e.target.id === "cardInfoBody" || e.target.id === "editSave") {
       setCardInfoModal("none");
@@ -140,9 +137,18 @@ function Home() {
   }, []);
   useEffect(() => {
     async function dateApi() {
-      const response = await fetch("https://api.datesapi.net/today");
-      const data = await response.json();
-      setToday(data.result);
+      try {
+        const response = await fetch("https://api.datesapi.net/today");
+        if (!response.ok) {
+          throw new Error("API error");
+        }
+        const data = await response.json();
+        setToday(data.result);
+      } catch (error) {
+        console.error("Date API failed:", error);
+        const localDate = new Date().toISOString().slice(0, 10);
+        setToday(localDate);
+      }
     }
     dateApi();
   }, []);
@@ -189,12 +195,10 @@ function Home() {
         year={year}
         month={month}
         expenseIncome={expenseIncome}
-        setCurrency={setCurrency}
         setType={setType}
         setAmount={setAmount}
         setName={setName}
         type={type}
-        currency={currency}
         amount={amount}
         name={name}
         cards={cards}

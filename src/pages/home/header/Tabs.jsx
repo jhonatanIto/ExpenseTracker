@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export default function Tabs(props) {
   const { setDisplay } = props;
 
-  const tabs = ["Dashboard", "Compound Interest Calculator"];
+  const tabs = ["Dashboard", "C.I.Calculator"];
 
   return (
     <>
@@ -21,7 +21,7 @@ export default function Tabs(props) {
               </button>
             </Link>
           );
-        } else if (tab === "Compound Interest Calculator") {
+        } else if (tab === "C.I.Calculator") {
           return (
             <Link to="/calculator">
               <button key={index} className="tab">
