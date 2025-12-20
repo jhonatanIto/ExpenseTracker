@@ -55,7 +55,7 @@ export default function TotalMenu(props) {
         >
           All
         </button>
-        <button
+        <div
           onClick={() => setDisplay("Fixed")}
           className="moreInfo filterExpense"
         >
@@ -63,8 +63,8 @@ export default function TotalMenu(props) {
           <button onClick={() => setDisplay("Fixed")} className="filterExpense">
             {Number(fixedTotal).toLocaleString("en-US")}
           </button>
-        </button>
-        <button
+        </div>
+        <div
           onClick={() => setDisplay("Food")}
           className="moreInfo filterExpense"
         >
@@ -73,8 +73,8 @@ export default function TotalMenu(props) {
             {" "}
             {Number(foodTotal).toLocaleString("en-US")}
           </button>
-        </button>
-        <button
+        </div>
+        <div
           onClick={() => setDisplay("Other")}
           className="moreInfo filterExpense"
         >
@@ -82,7 +82,7 @@ export default function TotalMenu(props) {
           <button onClick={() => setDisplay("Other")} className="filterExpense">
             {Number(otherTotal).toLocaleString("en-US")}
           </button>
-        </button>
+        </div>
       </div>
       <div className="totalBox">
         <div className="total">

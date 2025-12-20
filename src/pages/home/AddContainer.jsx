@@ -1,5 +1,5 @@
 import Cards from "./Cards";
-import plus from "../assets/plus (1).png";
+import plus from "../../assets/plus (1).png";
 
 export default function AddContainer(props) {
   const {

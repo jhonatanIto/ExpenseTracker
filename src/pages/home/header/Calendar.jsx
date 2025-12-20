@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import calendar from "../assets/calendar.png";
+import calendar from "../../../assets/calendar.png";
 
 export default function Calendar(props) {
   const { today, setnichi, year, month } = props;

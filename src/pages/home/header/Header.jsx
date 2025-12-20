@@ -1,7 +1,7 @@
 import DarkButton from "./DarkButton";
 import Tabs from "./Tabs";
-import logo from "../../assets/dollar.png";
-import profile from "../../assets/6681204.png";
+import logo from "../../../assets/dollar.png";
+import profile from "../../../assets/6681204.png";
 
 export default function Header(props) {
   const { setDisplay } = props;
