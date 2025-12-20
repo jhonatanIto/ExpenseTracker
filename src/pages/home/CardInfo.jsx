@@ -1,32 +1,32 @@
+import { useContext } from "react";
+import { CardsContext } from "../contex/CardsContex";
+
 export default function CardInfo(props) {
+  const { cards, saveData, setCards, closeModal } = props;
+
   const {
-    cardInfoModal,
-    currentId,
-    cards,
-    saveData,
-    setCards,
-    setEdit,
-    edit,
-    setArrow,
-    arrow,
-    setSaveOrEdit,
-    saveOrEdit,
-    deleteDisplay,
-    setDeleteDisplay,
-    cursor,
-    setCursor,
-    editName,
-    editAmount,
-    editCurrency,
-    editType,
-    setEditName,
-    setEditAmount,
-    setEditType,
-    closeModal,
-    setCardInfoModal,
     cardDate,
+    cardInfoModal,
+    setEdit,
+    setDeleteDisplay,
+    setSaveOrEdit,
+    setArrow,
+    setCursor,
+    edit,
+    setEditName,
+    editName,
+    setEditAmount,
+    arrow,
+    cursor,
+    editAmount,
     expenseIncome,
-  } = props;
+    setEditType,
+    editType,
+    saveOrEdit,
+    currentId,
+    setCardInfoModal,
+    deleteDisplay,
+  } = useContext(CardsContext);
 
   function editAll() {
     setEdit(false);
@@ -95,7 +95,6 @@ export default function CardInfo(props) {
 
                         name: editName,
                         amount: editAmount,
-                        currency: editCurrency,
                         type: editType,
                       }
                     : card

@@ -1,15 +1,18 @@
 import { Result } from "postcss";
+import { useContext } from "react";
+import { CardsContext } from "../contex/CardsContex";
 
 export default function TotalMenu(props) {
   const {
     cards,
-    setDisplay,
     month,
     setTotalExpense,
     totalExpense,
     setTotalIncome,
     totalIncome,
   } = props;
+
+  const { setDisplay } = useContext(CardsContext);
   let expense = cards.filter(
     (card) => card.expense === "Expense" && filterMonth(card) === month
   );

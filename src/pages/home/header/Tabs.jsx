@@ -1,8 +1,10 @@
+import { useContext } from "react";
 import dash from "../../../assets/dashboards.png";
 import { Link } from "react-router-dom";
+import { CardsContext } from "../../contex/CardsContex";
 
-export default function Tabs(props) {
-  const { setDisplay } = props;
+export default function Tabs() {
+  const { setDisplay } = useContext(CardsContext);
 
   const tabs = ["Dashboard", "C.I.Calculator"];
 

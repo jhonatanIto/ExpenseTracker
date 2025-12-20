@@ -2,27 +2,7 @@ import Cards from "./Cards";
 import plus from "../../assets/plus (1).png";
 
 export default function AddContainer(props) {
-  const {
-    openModal,
-    cards,
-    openCardInfo,
-    setCurrentId,
-    setEdit,
-    setArrow,
-    setSaveOrEdit,
-    setDeleteDisplay,
-    setCursor,
-    setEditName,
-    setEditAmount,
-    setEditCurrency,
-    setEditType,
-    setCardDate,
-    setExpenseIncome,
-    setType,
-    display,
-    month,
-    year,
-  } = props;
+  const { openModal, cards, setType, month, year } = props;
 
   return (
     <div className="flex flex-col justify-center items-center">

@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { CardsContext } from "../contex/CardsContex";
 
 export default function Modal(props) {
   const {
     modalDisplay,
     closeModal,
-    expenseIncome,
     setCards,
     saveData,
     id,
@@ -19,6 +19,8 @@ export default function Modal(props) {
     year,
     day,
   } = props;
+
+  const { expenseIncome } = useContext(CardsContext);
 
   const [formattedDate, setFormattedDate] = useState("");
 

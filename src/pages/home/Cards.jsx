@@ -1,7 +1,10 @@
+import { useContext } from "react";
+import { CardsContext } from "../contex/CardsContex";
+
 export default function Cards(props) {
+  const { cards, month, year } = props;
   const {
-    cards,
-    openCardInfo,
+    display,
     setCurrentId,
     setEdit,
     setArrow,
@@ -10,14 +13,11 @@ export default function Cards(props) {
     setCursor,
     setEditName,
     setEditAmount,
-    setEditCurrency,
     setEditType,
     setCardDate,
     setExpenseIncome,
-    display,
-    month,
-    year,
-  } = props;
+    openCardInfo,
+  } = useContext(CardsContext);
 
   let displayMonth = cards?.filter((c) => {
     let m = new Date(c.date).getMonth();
@@ -51,7 +51,6 @@ export default function Cards(props) {
               setCursor("default");
               setEditName(card.name);
               setEditAmount(card.amount);
-              setEditCurrency(card.currency);
               setEditType(card.type);
               setCardDate(card.date);
               setExpenseIncome(card.expense);
