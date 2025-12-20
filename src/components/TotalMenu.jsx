@@ -50,6 +50,12 @@ export default function TotalMenu(props) {
     <div className="totalContainer">
       <div className="totalInfoContainer">
         <div
+          onClick={() => setDisplay("All")}
+          className="allInfo filterExpense"
+        >
+          All
+        </div>
+        <div
           onClick={() => setDisplay("Fixed")}
           className="moreInfo filterExpense"
         >
