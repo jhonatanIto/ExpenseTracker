@@ -3,7 +3,7 @@ import dash from "../../assets/dashboards.png";
 export default function Tabs(props) {
   const { setDisplay } = props;
 
-  const tabs = ["Dashboard", "Transactions", "Category", "Analytics"];
+  const tabs = ["Dashboard", "Compound Interest Calculator (soon)"];
 
   return (
     <>
