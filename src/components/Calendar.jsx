@@ -53,12 +53,12 @@ export default function Calendar(props) {
           {" "}
           &lt;{" "}
         </button>
-        <div className="flex ">
+        <button className="flex ">
           {" "}
           <img className="calendar" src={calendar} />
           <div className="calendarMonth">&nbsp;&nbsp; {monthNames[month]}</div>
           <div className="ml-1.5">{year}</div>
-        </div>
+        </button>
 
         <button
           className="calendarArrow"

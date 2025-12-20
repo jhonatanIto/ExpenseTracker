@@ -10,15 +10,19 @@ export default function Tabs(props) {
       {tabs.map((tab, index) => {
         if (tab === "Dashboard") {
           return (
-            <div onClick={() => setDisplay("All")} key={index} className="tab">
+            <button
+              onClick={() => setDisplay("All")}
+              key={index}
+              className="tab"
+            >
               <img className="dashBoardIcon" src={dash} /> {tab}
-            </div>
+            </button>
           );
         } else {
           return (
-            <div key={index} className="tab">
+            <button key={index} className="tab">
               {tab}
-            </div>
+            </button>
           );
         }
       })}
