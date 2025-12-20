@@ -436,7 +436,8 @@ body,
   .tab {
     font-size: 10px;
     margin-left: 10px;
-    padding: 5px;
+    padding: 6px;
+    height: 33px;
   }
   .darkButtonContainer {
     display: block;
@@ -453,6 +454,7 @@ body,
   }
   .pig {
     margin-left: 5px;
+    width: 60px;
   }
   .dashBoardIcon {
     width: 10px;
