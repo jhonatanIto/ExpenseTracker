@@ -125,7 +125,17 @@ function Calculator() {
         <button onClick={simulate} className="calcButt">
           Calculate
         </button>
-        <button className="clearButt">Clear all</button>
+        <button
+          onClick={() => {
+            setInitialValue("");
+            setInterestRate("");
+            setMonthlyValue("");
+            setPeriod("");
+          }}
+          className="clearButt"
+        >
+          Clear all
+        </button>
       </div>
     </div>
   );
