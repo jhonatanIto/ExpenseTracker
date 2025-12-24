@@ -15,7 +15,7 @@ body,
   justify-content: space-between;
   background: linear-gradient(90deg, #25a6ca, #e6efff);
   border-bottom: 2px solid #d9d9d9;
-  height: 120px;
+  height: 100px;
 }
 .pig {
   width: 120px;

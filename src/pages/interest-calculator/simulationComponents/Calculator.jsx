@@ -1,10 +1,12 @@
 import { useState } from "react";
 
 function Calculator() {
-  const [initialValue, setInitialValue] = useState("");
-  const [monthlyValue, setMonthlyValue] = useState("");
-  const [interestRate, setInterestRate] = useState("");
-  const [period, setPeriod] = useState("");
+  const [initialValue, setInitialValue] = useState();
+  const [monthlyValue, setMonthlyValue] = useState();
+  const [interestRate, setInterestRate] = useState();
+  const [period, setPeriod] = useState();
+  const [yearOrMonth, setYearOrMonth] = useState("year");
+  const [rateYearMonth, setRateYearMonth] = useState("year");
 
   function formatedValue(e, set) {
     const raw = e.target.value.replace(/[^\d.]/g, "");
@@ -16,6 +18,26 @@ function Calculator() {
     if (!isNaN(number)) {
       set(new Intl.NumberFormat("en-US").format(number));
     }
+  }
+
+  function simulate() {
+    const principal = Number(initialValue.replace(/,/g, ""));
+    const monthlyContribution = Number(monthlyValue.replace(/,/g, ""));
+    const rate =
+      rateYearMonth === "year"
+        ? Math.pow(1 + interestRate / 100, 1 / 12) - 1
+        : interestRate / 100;
+    const periodoo =
+      yearOrMonth === "year"
+        ? Number(period.replace(/,/g, "")) * 12
+        : Number(period.replace(/,/g, ""));
+
+    const calc =
+      principal * Math.pow(1 + rate, periodoo) +
+      monthlyContribution * ((Math.pow(1 + rate, periodoo) - 1) / rate);
+
+    const result = new Intl.NumberFormat("en-US").format(calc);
+    alert(result);
   }
 
   return (
@@ -67,9 +89,14 @@ function Calculator() {
                 placeholder="8"
                 type="number"
               />
-              <select className="yearButt">
-                <option value="yearly">year</option>
-                <option value="monthly">month</option>
+              <select
+                onChange={(e) => {
+                  setRateYearMonth(e.target.value);
+                }}
+                className="yearButt"
+              >
+                <option value="year">year</option>
+                <option value="month">month</option>
               </select>
             </div>
           </div>
@@ -83,16 +110,21 @@ function Calculator() {
                 placeholder="1"
                 type="number"
               />
-              <select className="yearButt">
-                <option value="">year(s)</option>
-                <option value="">month(s)</option>
+              <select
+                onChange={(e) => setYearOrMonth(e.target.value)}
+                className="yearButt"
+              >
+                <option value="year">year(s)</option>
+                <option value="month">month(s)</option>
               </select>
             </div>
           </div>
         </div>
       </div>
       <div className="calcButtonsCont">
-        <button className="calcButt">Calculate</button>
+        <button onClick={simulate} className="calcButt">
+          Calculate
+        </button>
         <button className="clearButt">Clear all</button>
       </div>
     </div>
