@@ -547,7 +547,7 @@ body,
 }
 .calcContainer {
   margin-top: 30px;
-  width: 800px;
+  width: 900px;
   height: 330px;
   display: flex;
   flex-direction: column;
@@ -577,7 +577,7 @@ body,
 .calcInputYear {
   padding: 10px;
   border: 1px solid rgb(205, 205, 205);
-  width: 275px;
+  width: 265px;
   background-color: white;
 }
 .calcUp {
@@ -627,6 +627,7 @@ body,
   background-color: rgb(229, 229, 229);
 }
 .yearButt {
+  background-color: white;
   border-color: rgb(205, 205, 205);
   border-width: 1px 1px 1px 0px;
 }
