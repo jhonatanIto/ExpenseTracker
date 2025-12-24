@@ -15,7 +15,7 @@ body,
   justify-content: space-between;
   background: linear-gradient(90deg, #25a6ca, #e6efff);
   border-bottom: 2px solid #d9d9d9;
-  height: 120px;
+  height: 100px;
 }
 .pig {
   width: 120px;
@@ -539,5 +539,108 @@ body,
   .allInfo {
     width: 325px;
     padding: 5px;
+  }
+}
+.simulationBody {
+  display: flex;
+  justify-content: center;
+}
+.calcContainer {
+  margin-top: 30px;
+  width: 900px;
+  height: 330px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fbfbfb;
+  border: 1px solid rgb(221, 221, 221);
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.simulationCalcBox {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 66%;
+}
+.calcHeader {
+  font-size: 30px;
+}
+.calcInput {
+  padding: 10px;
+  border: 1px solid rgb(205, 205, 205);
+  width: 300px;
+  background-color: white;
+}
+.calcInputYear {
+  padding: 10px;
+  border: 1px solid rgb(205, 205, 205);
+  width: 265px;
+  background-color: white;
+}
+.calcUp {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px;
+}
+.calcButtonsCont {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.calcButt {
+  font-size: 19px;
+  border: 1px solid rgb(236, 236, 236);
+  border-radius: 4px;
+  width: 120px;
+  cursor: pointer;
+  background-color: rgb(249, 249, 249);
+  transition: 0.3s;
+  margin-left: 10px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.15);
+}
+.calcButt:hover {
+  color: rgb(97, 168, 255);
+}
+
+.simb {
+  width: 50px;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-color: rgb(205, 205, 205);
+  border-width: 1px 0px 1px 1px;
+  background-color: #e9e9e9;
+}
+.clearButt {
+  cursor: pointer;
+  margin-right: 20px;
+  border-radius: 10px;
+  padding: 5px;
+  width: 80px;
+  transition: 0.3s;
+}
+.clearButt:hover {
+  background-color: rgb(229, 229, 229);
+}
+.yearButt {
+  background-color: white;
+  border-color: rgb(205, 205, 205);
+  border-width: 1px 1px 1px 0px;
+}
+@media (max-width: 700px) {
+  .calcHeader {
+    font-size: 25px;
+  }
+  .calcContainer {
+    width: 360px;
+    height: 540px;
+    justify-content: space-around;
+  }
+  .calcUp {
+    flex-direction: column;
   }
 }

@@ -6,7 +6,7 @@ import { CardsContext } from "../../contex/CardsContex";
 export default function Tabs() {
   const { setDisplay } = useContext(CardsContext);
 
-  const tabs = ["Dashboard", "C.I.Calculator"];
+  const tabs = ["Dashboard", "C.I.Simulation"];
 
   return (
     <>
@@ -23,9 +23,9 @@ export default function Tabs() {
               </button>
             </Link>
           );
-        } else if (tab === "C.I.Calculator") {
+        } else if (tab === "C.I.Simulation") {
           return (
-            <Link to="/calculator">
+            <Link to="/simulation">
               <button key={index} className="tab">
                 {tab}
               </button>

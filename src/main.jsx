@@ -5,9 +5,9 @@ import "./App.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import Home from "./pages/home/Home.jsx";
-import Calculator from "./pages/interest-calculator/Calculator.jsx";
 import Error from "./pages/errorPage/Error.jsx";
 import CardsProvider from "./pages/contex/CardsContex.jsx";
+import Simulation from "./pages/interest-calculator/Simulation.jsx";
 
 const router = createBrowserRouter([
   {
@@ -19,8 +19,8 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "calculator",
-        element: <Calculator />,
+        path: "simulation",
+        element: <Simulation />,
       },
       {
         path: "*",
