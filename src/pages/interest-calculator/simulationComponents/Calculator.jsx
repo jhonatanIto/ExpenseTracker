@@ -1,12 +1,25 @@
 import { useState } from "react";
 
-function Calculator() {
+function Calculator(props) {
   const [initialValue, setInitialValue] = useState();
   const [monthlyValue, setMonthlyValue] = useState();
-  const [interestRate, setInterestRate] = useState();
-  const [period, setPeriod] = useState();
-  const [yearOrMonth, setYearOrMonth] = useState("year");
-  const [rateYearMonth, setRateYearMonth] = useState("year");
+
+  const {
+    rateYearMonth,
+    setRateYearMonth,
+    interestRate,
+    yearOrMonth,
+    period,
+    setInterestRate,
+    setYearOrMonth,
+    setPeriod,
+    setCurrency,
+    currency,
+    setFinalResult,
+    setTotalCompound,
+    setTotalInvested,
+    setDisplayResult,
+  } = props;
 
   function formatedValue(e, set) {
     const raw = e.target.value.replace(/[^\d.]/g, "");
@@ -35,9 +48,26 @@ function Calculator() {
     const calc =
       principal * Math.pow(1 + rate, periodoo) +
       monthlyContribution * ((Math.pow(1 + rate, periodoo) - 1) / rate);
+    const formatCalc = calc.toFixed(0);
 
-    const result = new Intl.NumberFormat("en-US").format(calc);
-    alert(result);
+    const result = new Intl.NumberFormat("en-US").format(formatCalc);
+    setFinalResult(result);
+
+    let totalInve = null;
+    let totalComp = null;
+    if (rateYearMonth === "year" && yearOrMonth === "year") {
+      totalInve = (monthlyContribution * 12 * period + principal).toFixed(0);
+      totalComp = (formatCalc - totalInve).toFixed(0);
+    } else if (rateYearMonth === "month" && yearOrMonth === "year") {
+      totalInve = principal + monthlyContribution * period * 12;
+      totalComp = formatCalc - totalInve;
+    } else {
+      totalInve = principal + monthlyContribution * period;
+      totalComp = formatCalc - totalInve;
+    }
+    setTotalInvested(new Intl.NumberFormat("en-US").format(totalInve));
+    setTotalCompound(new Intl.NumberFormat("en-US").format(totalComp));
+    setDisplayResult("flex");
   }
 
   return (
@@ -122,15 +152,42 @@ function Calculator() {
         </div>
       </div>
       <div className="calcButtonsCont">
-        <button onClick={simulate} className="calcButt">
-          Calculate
-        </button>
+        <div>
+          <button onClick={simulate} className="calcButt">
+            Calculate
+          </button>
+          <select
+            value={
+              currency === "$"
+                ? "$"
+                : currency === "¥"
+                ? "¥"
+                : currency === "€"
+                ? "€"
+                : "$"
+            }
+            onChange={(e) => {
+              setCurrency(e.target.value);
+              localStorage.setItem(
+                "currCurrency",
+                JSON.stringify(e.target.value)
+              );
+            }}
+            className="ml-5"
+          >
+            <option value="$">usd</option>
+            <option value="¥">jpy</option>
+            <option value="€">euro</option>
+          </select>
+        </div>
+
         <button
           onClick={() => {
             setInitialValue("");
             setInterestRate("");
             setMonthlyValue("");
             setPeriod("");
+            setDisplayResult("none");
           }}
           className="clearButt"
         >
