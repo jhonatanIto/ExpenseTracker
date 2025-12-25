@@ -14,7 +14,7 @@ function Simulation() {
   const [displayResult, setDisplayResult] = useState("none");
 
   useEffect(() => {
-    const curr = JSON.parse(localStorage.getItem("currCurrency"));
+    const curr = JSON.parse(localStorage.getItem("currCurrency")) || "$";
     setCurrency(curr);
   }, []);
 
