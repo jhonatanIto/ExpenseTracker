@@ -103,7 +103,7 @@ export default function TotalMenu(props) {
           </div>
         </div>
         <div className="total balance">
-          Balace:
+          Balance:
           <div>{Number(result).toLocaleString("en-US")}</div>
         </div>
       </div>
