@@ -69,8 +69,9 @@ function Home() {
   const chartDataForYear = useMemo(() => {
     return toChartArray(monthlyMap, selectedYear);
   }, [monthlyMap, selectedYear]);
+
   const last6Months = useMemo(() => {
-    return chartDataForYear.slice(-6);
+    return chartDataForYear.slice(0);
   }, [chartDataForYear]);
 
   const chartData = useMemo(() => {
