@@ -85,6 +85,8 @@
   }
   .moneyContainer {
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
   .moneyImg {
     width: 300px;
@@ -92,6 +94,19 @@
   }
   .botContainer {
     flex-direction: column;
-    border: 1px solid black;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+  .oneSide {
+    flex-direction: column;
+    font-size: 45px;
+  }
+  .today {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .inputFocus {
+    min-width: 320px;
   }
 }
