@@ -3,6 +3,7 @@ import Tabs from "./Tabs";
 import logo from "../../../assets/dollar.png";
 import back from "../../../assets/back.png";
 import profile from "../../../assets/6681204.png";
+import menuMob from "../../../assets/menu.png";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -14,7 +15,7 @@ export default function Header(props) {
         <img
           onClick={() => setDisplayMobile("flex")}
           className="menuMob"
-          src="src\assets\menu.png"
+          src={menuMob}
         />
         <img className="pig" src={logo} />
         <div className="tabsContainer">
