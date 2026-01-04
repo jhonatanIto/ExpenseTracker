@@ -17,11 +17,19 @@ body,
   border-bottom: 2px solid #d9d9d9;
   height: 100px;
 }
+.menuMob {
+  display: none;
+}
 .pig {
   width: 120px;
   margin-left: 50px;
 }
 .tabsContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.headerLeft {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -423,6 +431,19 @@ body,
   .header {
     height: 80px;
   }
+  .headerLeft {
+    justify-content: space-between;
+    position: relative;
+    width: 50%;
+  }
+  .tabsContainer {
+    display: none;
+  }
+  .menuMob {
+    width: 45px;
+    display: block;
+    margin-left: 20px;
+  }
   .profileContainer {
     width: 40px;
   }
@@ -458,8 +479,10 @@ body,
     cursor: pointer;
   }
   .pig {
-    margin-left: 5px;
     width: 60px;
+    position: absolute;
+    left: 50%;
+    display: none;
   }
   .dashBoardIcon {
     width: 10px;

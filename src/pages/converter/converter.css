@@ -78,3 +78,20 @@
   color: rgb(241, 241, 241);
   cursor: default;
 }
+
+@media (max-width: 480px) {
+  .box {
+    margin-top: 20px;
+  }
+  .moneyContainer {
+    flex-direction: column;
+  }
+  .moneyImg {
+    width: 300px;
+    margin-top: 20px;
+  }
+  .botContainer {
+    flex-direction: column;
+    border: 1px solid black;
+  }
+}

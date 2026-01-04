@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import "./converter.css";
+import senyen from "../../assets/1000yen.jpg";
+import onedollar from "../../assets/dollarr.png";
 function Converter() {
   const [dollarValue, setDollarValue] = useState(1);
   const [yenValue, setYenValue] = useState();
@@ -62,8 +64,8 @@ function Converter() {
     <div className="converterBody">
       <div className="box">
         <div className="moneyContainer">
-          <img className="moneyImg" src="src\assets\dollarr.png" />
-          <img className="moneyImg" src="src\assets\1000yen.jpg" />
+          <img className="moneyImg" src={onedollar} />
+          <img className="moneyImg" src={senyen} />
         </div>
         <div className="botContainer">
           <div className="oneSide">
