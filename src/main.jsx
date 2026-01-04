@@ -8,6 +8,7 @@ import Home from "./pages/home/Home.jsx";
 import Error from "./pages/errorPage/Error.jsx";
 import CardsProvider from "./pages/contex/CardsContex.jsx";
 import Simulation from "./pages/interest-calculator/Simulation.jsx";
+import Converter from "./pages/converter/Converter.jsx";
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
       {
         path: "simulation",
         element: <Simulation />,
+      },
+      {
+        path: "converter",
+        element: <Converter />,
       },
       {
         path: "*",

@@ -30,12 +30,17 @@ body,
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 22px;
+  padding: 20px;
   background-color: white;
   border-radius: 8px;
   height: 20px;
+  width: 150px;
   margin-left: 40px;
   cursor: pointer;
+  transition: 0.5s;
+}
+.tab:hover {
+  color: #05c9ff;
 }
 .dashBoardIcon {
   width: 20px;

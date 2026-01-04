@@ -6,7 +6,7 @@ import { CardsContext } from "../../contex/CardsContex";
 export default function Tabs() {
   const { setDisplay } = useContext(CardsContext);
 
-  const tabs = ["Dashboard", "C.I.Simulation"];
+  const tabs = ["Dashboard", "C.I.Simulation", "USD/JPY"];
 
   return (
     <>
@@ -26,6 +26,14 @@ export default function Tabs() {
         } else if (tab === "C.I.Simulation") {
           return (
             <Link to="/simulation">
+              <button key={index} className="tab">
+                {tab}
+              </button>
+            </Link>
+          );
+        } else if (tab === "USD/JPY") {
+          return (
+            <Link to="/converter">
               <button key={index} className="tab">
                 {tab}
               </button>
