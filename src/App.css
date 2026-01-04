@@ -16,6 +16,7 @@ body,
   background: linear-gradient(90deg, #25a6ca, #e6efff);
   border-bottom: 2px solid #d9d9d9;
   height: 100px;
+  position: relative;
 }
 .menuMob {
   display: none;
@@ -430,11 +431,37 @@ body,
   }
   .header {
     height: 80px;
+    position: relative;
   }
   .headerLeft {
     justify-content: space-between;
-    position: relative;
     width: 50%;
+  }
+
+  .mobileMenu {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: rgba(0, 0, 0, 0.8);
+    top: 76px;
+    padding: 10px;
+  }
+  .mobileTab {
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    margin: 10px;
+    background-color: #f3f3f3;
+    border-radius: 10px;
+    width: 120px;
+  }
+  .backIcon {
+    margin-top: 10px;
+    width: 45px;
   }
   .tabsContainer {
     display: none;
