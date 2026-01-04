@@ -13,7 +13,11 @@ export default function Header(props) {
     <div className="header">
       <div className="headerLeft">
         <img
-          onClick={() => setDisplayMobile("flex")}
+          onClick={() => {
+            displayMobile === "none"
+              ? setDisplayMobile("flex")
+              : setDisplayMobile("none");
+          }}
           className="menuMob"
           src={menuMob}
         />
@@ -45,11 +49,6 @@ export default function Header(props) {
             USD/JPY
           </div>
         </Link>
-        <img
-          onClick={() => setDisplayMobile("none")}
-          className="backIcon"
-          src={back}
-        />
       </div>
     </div>
   );
