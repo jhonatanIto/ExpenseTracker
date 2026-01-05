@@ -89,7 +89,7 @@
     align-items: center;
   }
   .moneyImg {
-    width: 300px;
+    width: 260px;
     margin-top: 20px;
   }
   .botContainer {
@@ -108,5 +108,16 @@
   }
   .inputFocus {
     min-width: 320px;
+  }
+}
+@media (max-width: 992px) {
+  .moneyImg {
+    width: 300px;
+    margin-top: 20px;
+  }
+  .moneyContainer {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 }

@@ -759,3 +759,16 @@ body,
   .rBox {
   }
 }
+@media (max-width: 992px) {
+  .tab {
+    width: 100px;
+    font-size: 12px;
+    margin-left: 15px;
+  }
+  .rightSideHeader {
+    margin-right: 0px;
+  }
+  .pig {
+    width: 90px;
+  }
+}
