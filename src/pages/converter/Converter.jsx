@@ -3,7 +3,7 @@ import "./converter.css";
 import senyen from "../../assets/1000yen.jpg";
 import onedollar from "../../assets/dollarr.png";
 function Converter() {
-  const [dollarValue, setDollarValue] = useState(1);
+  const [dollarValue, setDollarValue] = useState("1");
   const [yenValue, setYenValue] = useState();
   const [isFocused, setIsFocused] = useState(false);
   const [hover, setHover] = useState(false);
@@ -77,9 +77,9 @@ function Converter() {
             >
               <div>$</div>
               <input
-                value={formatUSD(dollarValue)}
+                value={isFocused ? dollarValue : formatUSD(dollarValue)}
                 onChange={(e) => {
-                  const raw = e.target.value.replace(/,/g, "");
+                  const raw = e.target.value.replace(/\D/g, "");
 
                   if (raw === "" || isNaN(raw)) {
                     setDollarValue("");
@@ -92,7 +92,7 @@ function Converter() {
                   setYenValue(converted.toFixed(2));
                 }}
                 className={`input ${isFocused ? "inputFocus" : ""}`}
-                style={{ width: `${String(dollarValue).length}ch` }}
+                style={{ width: `${formatUSD(dollarValue).length}ch` }}
                 type="text"
                 onFocus={() => setIsFocused(true)}
                 onBlur={() => setIsFocused(false)}
