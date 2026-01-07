@@ -92,19 +92,15 @@ function Home() {
     };
   }, [last6Months]);
 
-  function closeModal(e) {
-    if (
-      e.target.id === "modalBody" ||
-      e.target.id === "save" ||
-      e.key === "Enter"
-    ) {
-      setModalDisplay("none");
-      setName("");
-      setAmount("");
-      setType("Fixed");
-    } else if (e.target.id === "cardInfoBody" || e.target.id === "editSave") {
-      setCardInfoModal("none");
-    }
+  function closeModal() {
+    setModalDisplay("none");
+    setName("");
+    setAmount("");
+    setType("Fixed");
+  }
+
+  function closeEditModal() {
+    setCardInfoModal("none");
   }
 
   function openModal(type) {
@@ -179,7 +175,7 @@ function Home() {
         setCards={setCards}
         saveData={saveData}
         cards={cards}
-        closeModal={closeModal}
+        closeEditModal={closeEditModal}
       />
     </>
   );

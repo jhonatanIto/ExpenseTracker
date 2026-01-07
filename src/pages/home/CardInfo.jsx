@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { CardsContext } from "../contex/CardsContex";
 
 export default function CardInfo(props) {
-  const { cards, saveData, setCards, closeModal } = props;
+  const { cards, saveData, setCards, closeEditModal } = props;
 
   const {
     cardDate,
@@ -36,16 +36,48 @@ export default function CardInfo(props) {
     setCursor("pointer");
   }
 
+  function updateCard() {
+    if (saveOrEdit === "Edit") {
+      editAll();
+    } else if (saveOrEdit === "Save" && editName !== "" && editAmount !== "") {
+      setCards((prev) => {
+        const updateCard = prev.map((card) =>
+          card.id === currentId
+            ? {
+                ...card,
+
+                name: editName,
+                amount: editAmount,
+                type: editType,
+              }
+            : card
+        );
+        saveData(updateCard);
+        return updateCard;
+      });
+
+      setCardInfoModal("none");
+    }
+  }
+
+  function handleKeyDown(e) {
+    if (e.key === "Enter") {
+      updateCard();
+      closeEditModal();
+    }
+  }
+
   return (
     <div
-      onClick={closeModal}
+      onClick={closeEditModal}
       id="cardInfoBody"
       style={{ display: cardInfoModal }}
       className="cardInfoBody"
     >
-      <div className="cardInfoContainer">
+      <div onClick={(e) => e.stopPropagation()} className="cardInfoContainer">
         <div>{cardDate}</div>
         <input
+          onKeyDown={handleKeyDown}
           disabled={edit}
           className="CardInfoInput "
           type="text"
@@ -55,6 +87,7 @@ export default function CardInfo(props) {
           value={editName}
         />
         <input
+          onKeyDown={handleKeyDown}
           disabled={edit}
           className="CardInfoInput"
           type="number"
@@ -84,27 +117,7 @@ export default function CardInfo(props) {
         </div>
         <button
           onClick={() => {
-            if (saveOrEdit === "Edit") {
-              editAll();
-            } else {
-              setCards((prev) => {
-                const updateCard = prev.map((card) =>
-                  card.id === currentId
-                    ? {
-                        ...card,
-
-                        name: editName,
-                        amount: editAmount,
-                        type: editType,
-                      }
-                    : card
-                );
-                saveData(updateCard);
-                return updateCard;
-              });
-
-              setCardInfoModal("none");
-            }
+            updateCard();
           }}
           className="buttons edit"
         >

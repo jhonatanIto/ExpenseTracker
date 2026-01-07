@@ -74,7 +74,7 @@ export default function Modal(props) {
       style={{ display: modalDisplay }}
       className="modalBody"
     >
-      <div className="modalCard">
+      <div onClick={(e) => e.stopPropagation()} className="modalCard">
         <div
           style={{
             color:
