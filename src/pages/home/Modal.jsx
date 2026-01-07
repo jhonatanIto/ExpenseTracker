@@ -34,6 +34,39 @@ export default function Modal(props) {
     );
   }, [year, month, day]);
 
+  function handleKeyDown(e) {
+    if (e.key === "Enter") {
+      addCard();
+      closeModal();
+    }
+  }
+
+  // adds a new card to the screen and localStorage
+  function addCard() {
+    if (name !== "" && amount !== "") {
+      let newCard = {
+        name: name,
+        amount: amount,
+        type: type,
+        expense: expenseIncome,
+        date: formattedDate || "loading",
+        id: id,
+      };
+
+      setCards((prev) => {
+        const updated = [...prev, newCard];
+        saveData(updated);
+        return updated;
+      });
+
+      setName("");
+      setAmount("");
+      setType("Fixed");
+      setId((prev) => prev + 1);
+      closeModal();
+    }
+  }
+
   return (
     <div
       id="modalBody"
@@ -62,6 +95,7 @@ export default function Modal(props) {
           }}
         />
         <input
+          onKeyDown={handleKeyDown}
           className="modalInput inputName"
           placeholder="name"
           type="text"
@@ -70,6 +104,7 @@ export default function Modal(props) {
         />
 
         <input
+          onKeyDown={handleKeyDown}
           className="modalInput"
           placeholder="amount"
           type="number"
@@ -92,27 +127,7 @@ export default function Modal(props) {
         <div
           id="save"
           onClick={() => {
-            if (name !== "" && amount !== "") {
-              let newCard = {
-                name: name,
-                amount: amount,
-                type: type,
-                expense: expenseIncome,
-                date: formattedDate || "loading",
-                id: id,
-              };
-
-              setCards((prev) => {
-                const updated = [...prev, newCard];
-                saveData(updated);
-                return updated;
-              });
-
-              setName("");
-              setAmount("");
-              setType("Fixed");
-              setId((prev) => prev + 1);
-            }
+            addCard();
           }}
           className="modalSave"
         >

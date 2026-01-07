@@ -216,12 +216,16 @@ body,
   margin-top: 10px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
   cursor: pointer;
+  transition: transform 0.3s;
+}
+.cardBox:hover {
+  transform: translateY(-3px);
 }
 .gasto {
   border-color: rgb(255, 106, 106);
 }
 .renda {
-  border-color: rgb(69, 214, 69);
+  border-color: rgb(0, 153, 255);
 }
 .cardGasto {
   color: rgb(255, 106, 106);

@@ -90,7 +90,7 @@ export default function TotalMenu(props) {
       <div className="totalBox">
         <div className="total">
           Total Income:
-          <div style={{ color: "rgb(69, 214, 69)" }}>
+          <div style={{ color: "rgb(0, 153, 255)" }}>
             {" "}
             {Number(totalIncome).toLocaleString("en-US")}
           </div>

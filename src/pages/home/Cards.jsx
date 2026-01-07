@@ -64,7 +64,7 @@ export default function Cards(props) {
                 color:
                   card.expense === "Expense"
                     ? "rgb(255, 56, 89)"
-                    : "rgb(69, 214, 69)",
+                    : "rgb(0, 153, 255)",
               }}
               className="cardGasto"
             >

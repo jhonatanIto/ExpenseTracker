@@ -93,7 +93,11 @@ function Home() {
   }, [last6Months]);
 
   function closeModal(e) {
-    if (e.target.id === "modalBody" || e.target.id === "save") {
+    if (
+      e.target.id === "modalBody" ||
+      e.target.id === "save" ||
+      e.key === "Enter"
+    ) {
       setModalDisplay("none");
       setName("");
       setAmount("");
