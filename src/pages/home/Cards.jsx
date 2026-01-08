@@ -77,7 +77,11 @@ export default function Cards(props) {
             >
               +
             </button>
-            <button key={index} className="cardBox">
+            <button
+              key={index}
+              className="cardBox"
+              style={{ transform: "none", cursor: "default" }}
+            >
               <div>{card.name}</div>
               <div
                 style={{
