@@ -52,7 +52,7 @@ export default function CardInfo(props) {
               }
             : card
         );
-        saveData(updateCard);
+        saveData(updateCard, "Expenses");
         return updateCard;
       });
 
@@ -127,9 +127,10 @@ export default function CardInfo(props) {
           id="editSave"
           onClick={() => {
             let updatedCards = cards.filter((card) => card.id !== currentId);
-            saveData(updatedCards);
+            console.log(cards.filter((card) => card.id === currentId));
+            saveData(updatedCards, "Expenses");
             setCards(updatedCards);
-            closeModal();
+            closeEditModal();
           }}
           style={{ display: deleteDisplay }}
           className="buttons del"

@@ -6,6 +6,8 @@ export default function Main(props) {
   const {
     openModal,
     cards,
+    setCards,
+    fixedCards,
     setType,
     month,
     year,
@@ -14,6 +16,11 @@ export default function Main(props) {
     setTotalIncome,
     totalIncome,
     chartData,
+    formattedDate,
+    setFixedCards,
+    id,
+    setId,
+    saveData,
   } = props;
   return (
     <div className="main">

@@ -15,6 +15,7 @@ function Home() {
 
   const { setExpenseIncome, setCardInfoModal } = useContext(CardsContext);
   const [cards, setCards] = useState([]);
+  const [fixedCards, setFixedCards] = useState([]);
   const [modalDisplay, setModalDisplay] = useState("none");
   const [id, setId] = useState(0);
   const [name, setName] = useState("");
@@ -24,6 +25,7 @@ function Home() {
   const [cardDate, setCardDate] = useState("");
   const [totalExpense, setTotalExpense] = useState();
   const [totalIncome, setTotalIncome] = useState();
+  const [formattedDate, setFormattedDate] = useState("");
 
   function monthlyTotal(cardss) {
     const map = {};
@@ -48,6 +50,7 @@ function Home() {
     });
     return map;
   }
+
   function toChartArray(map, year) {
     return Array.from({ length: 12 }, (_, month) => ({
       year,
@@ -107,14 +110,18 @@ function Home() {
     setModalDisplay("flex");
     setExpenseIncome(type);
   }
-  function saveData(cards) {
-    localStorage.setItem("Expenses", JSON.stringify(cards));
+  function saveData(cards, storage) {
+    localStorage.setItem(storage, JSON.stringify(cards));
+    localStorage.setItem(storage, JSON.stringify(cards));
   }
   useEffect(() => {
     let saved = localStorage.getItem("Expenses");
+    let savedFixed = localStorage.getItem("fixedCards");
     try {
       const db = saved ? JSON.parse(saved) : [];
+      const dbF = savedFixed ? JSON.parse(savedFixed) : [];
       setCards(db);
+      setFixedCards(dbF);
 
       const maxId = db.length > 0 ? Math.max(...db.map((c) => c.id)) : 0;
       setId(maxId + 1);
@@ -137,6 +144,11 @@ function Home() {
         today={today}
       />
       <Main
+        saveData={saveData}
+        setId={setId}
+        id={id}
+        setFixedCards={setFixedCards}
+        formattedDate={formattedDate}
         chartData={chartData}
         totalIncome={totalIncome}
         setTotalIncome={setTotalIncome}
@@ -147,10 +159,15 @@ function Home() {
         setType={setType}
         setCardDate={setCardDate}
         cards={cards}
+        setCards={setCards}
+        fixedCards={fixedCards}
         openModal={openModal}
         setModalDisplay={setModalDisplay}
       />
       <Modal
+        formattedDate={formattedDate}
+        setFormattedDate={setFormattedDate}
+        setFixedCards={setFixedCards}
         day={day}
         year={year}
         month={month}

@@ -2,7 +2,20 @@ import Cards from "./Cards";
 import plus from "../../assets/plus (1).png";
 
 export default function AddContainer(props) {
-  const { openModal, cards, setType, month, year } = props;
+  const {
+    openModal,
+    cards,
+    setType,
+    month,
+    year,
+    fixedCards,
+    setCards,
+    formattedDate,
+    setFixedCards,
+    id,
+    setId,
+    saveData,
+  } = props;
 
   return (
     <div className="flex flex-col justify-center items-center">

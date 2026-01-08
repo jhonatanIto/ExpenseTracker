@@ -18,11 +18,12 @@ export default function Modal(props) {
     month,
     year,
     day,
+    setFixedCards,
+    setFormattedDate,
+    formattedDate,
   } = props;
 
   const { expenseIncome } = useContext(CardsContext);
-
-  const [formattedDate, setFormattedDate] = useState("");
 
   useEffect(() => {
     setFormattedDate(
@@ -55,9 +56,20 @@ export default function Modal(props) {
 
       setCards((prev) => {
         const updated = [...prev, newCard];
-        saveData(updated);
+        saveData(updated, "Expenses");
         return updated;
       });
+      if (type === "Fixed") {
+        setFixedCards((prev) => {
+          const fixedCard = {
+            ...newCard,
+            hiddenIn: [`${year}-${month}`],
+          };
+          const allFixed = [...prev, fixedCard];
+          saveData(allFixed, "fixedCards");
+          return allFixed;
+        });
+      }
 
       setName("");
       setAmount("");

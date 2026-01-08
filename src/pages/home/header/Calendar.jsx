@@ -60,12 +60,7 @@ export default function Calendar(props) {
           <div className="ml-1.5">{year}</div>
         </button>
 
-        <button
-          className="calendarArrow"
-          onClick={() => {
-            changeMonth(1);
-          }}
-        >
+        <button className="calendarArrow" onClick={() => changeMonth(1)}>
           &gt;
         </button>
       </div>
