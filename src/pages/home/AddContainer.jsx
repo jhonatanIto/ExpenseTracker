@@ -25,7 +25,8 @@ export default function AddContainer(props) {
             fixedCards.map((f) => addAllFixed(f));
           }}
         >
-          Add all Fixed
+          <div className="fixDesk">Add all Fixed</div>
+          <div className="fixMobile">All Fixed</div>
         </button>
         <button
           onClick={() => openModal("Expense")}

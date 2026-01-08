@@ -64,6 +64,7 @@ export default function CardInfo(props) {
     if (e.key === "Enter") {
       updateCard();
       closeEditModal();
+      console.log("clicou enter");
     }
   }
   return (

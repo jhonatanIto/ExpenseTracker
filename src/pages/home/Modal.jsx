@@ -8,8 +8,6 @@ export default function Modal(props) {
     closeModal,
     setCards,
     saveData,
-    id,
-    setId,
     name,
     type,
     amount,
@@ -75,7 +73,6 @@ export default function Modal(props) {
       setName("");
       setAmount("");
       setType("Fixed");
-      setId((prev) => prev + 1);
       closeModal();
     }
   }
@@ -100,6 +97,7 @@ export default function Modal(props) {
           {expenseIncome}
         </div>
         <input
+          onKeyDown={handleKeyDown}
           className="dateInput"
           type="date"
           value={formattedDate}
