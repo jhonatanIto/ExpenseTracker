@@ -18,9 +18,8 @@ export default function Main(props) {
     chartData,
     formattedDate,
     setFixedCards,
-    id,
-    setId,
     saveData,
+    addAllFixed,
   } = props;
   return (
     <div className="main">

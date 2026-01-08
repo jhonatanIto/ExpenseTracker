@@ -12,14 +12,21 @@ export default function AddContainer(props) {
     setCards,
     formattedDate,
     setFixedCards,
-    id,
-    setId,
     saveData,
+    addAllFixed,
   } = props;
 
   return (
     <div className="flex flex-col justify-center items-center">
       <div className="addButtContainer">
+        <button
+          className="allFixedButt"
+          onClick={() => {
+            fixedCards.map((f) => addAllFixed(f));
+          }}
+        >
+          Add all Fixed
+        </button>
         <button
           onClick={() => openModal("Expense")}
           id="expense"

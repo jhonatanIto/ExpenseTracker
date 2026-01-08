@@ -1,7 +1,6 @@
 import DarkButton from "./DarkButton";
 import Tabs from "./Tabs";
 import logo from "../../../assets/dollar.png";
-import back from "../../../assets/back.png";
 import profile from "../../../assets/6681204.png";
 import menuMob from "../../../assets/menu.png";
 import { useState } from "react";

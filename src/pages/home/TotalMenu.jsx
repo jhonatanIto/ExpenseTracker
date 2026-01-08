@@ -6,6 +6,7 @@ export default function TotalMenu(props) {
   const {
     cards,
     month,
+    year,
     setTotalExpense,
     totalExpense,
     setTotalIncome,
@@ -14,19 +15,21 @@ export default function TotalMenu(props) {
 
   const { setDisplay } = useContext(CardsContext);
   let expense = cards.filter(
-    (card) => card.expense === "Expense" && filterMonth(card) === month
+    (card) =>
+      card.expense === "Expense" && filterMonth(card) === `${year}-${month}`
   );
   let income = cards.filter(
-    (card) => card.expense === "Income" && filterMonth(card) === month
+    (card) =>
+      card.expense === "Income" && filterMonth(card) === `${year}-${month}`
   );
   let fixed = cards.filter(
-    (card) => card.type === "Fixed" && filterMonth(card) === month
+    (card) => card.type === "Fixed" && filterMonth(card) === `${year}-${month}`
   );
   let food = cards.filter(
-    (card) => card.type === "Food" && filterMonth(card) === month
+    (card) => card.type === "Food" && filterMonth(card) === `${year}-${month}`
   );
   let other = cards.filter(
-    (card) => card.type === "Other" && filterMonth(card) === month
+    (card) => card.type === "Other" && filterMonth(card) === `${year}-${month}`
   );
   function addAll(price) {
     return price.length > 0
@@ -38,7 +41,9 @@ export default function TotalMenu(props) {
   }
 
   function filterMonth(card) {
-    return new Date(card.date).getMonth();
+    const mont = new Date(card.date).getMonth();
+    const yearr = new Date(card.date).getFullYear();
+    return `${yearr}-${mont}`;
   }
 
   setTotalExpense(addAll(expense));

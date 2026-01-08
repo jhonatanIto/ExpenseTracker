@@ -7,12 +7,9 @@ export default function Cards(props) {
     month,
     year,
     fixedCards,
-    setCards,
-    formattedDate,
     setFixedCards,
-    id,
-    setId,
     saveData,
+    addAllFixed,
   } = props;
   const {
     display,
@@ -75,25 +72,7 @@ export default function Cards(props) {
               style={{ display: card.type === "Fixed" ? "flex" : "none" }}
               className="fixedButt"
               onClick={() => {
-                setCards((prev) => {
-                  const newCardDate = { ...card, date: formattedDate, id: id };
-                  const uptade = [...prev, newCardDate];
-                  console.log(newCardDate);
-                  return uptade;
-                });
-                setFixedCards((prev) => {
-                  const updateFixedCards = prev.map((c) =>
-                    c.id === card.id
-                      ? {
-                          ...c,
-                          hiddenIn: [...c.hiddenIn, `${year}-${month}`],
-                        }
-                      : c
-                  );
-                  saveData(updateFixedCards, "fixedCards");
-                  return updateFixedCards;
-                });
-                setId((prev) => prev + 1);
+                addAllFixed(card);
               }}
             >
               +

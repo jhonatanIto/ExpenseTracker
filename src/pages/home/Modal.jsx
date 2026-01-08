@@ -1,5 +1,6 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { CardsContext } from "../contex/CardsContex";
+import { v4 as uuid } from "uuid";
 
 export default function Modal(props) {
   const {
@@ -50,8 +51,8 @@ export default function Modal(props) {
         amount: amount,
         type: type,
         expense: expenseIncome,
-        date: formattedDate || "loading",
-        id: id,
+        date: formattedDate,
+        id: uuid(),
       };
 
       setCards((prev) => {

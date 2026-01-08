@@ -181,7 +181,8 @@ body,
 
 .addButtContainer {
   display: flex;
-  padding: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   justify-content: space-around;
   width: 800px;
 }
@@ -194,6 +195,21 @@ body,
   font-size: 25px;
   border-radius: 10px;
   cursor: pointer;
+}
+.allFixedButt {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid rgb(156, 156, 156);
+  font-size: 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  padding-left: 8px;
+  padding-right: 8px;
+  transition: 0.3s;
+}
+.allFixedButt:hover {
+  border-color: rgb(255, 106, 106);
 }
 .plus {
   width: 20px;

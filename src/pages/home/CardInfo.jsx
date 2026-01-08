@@ -66,7 +66,6 @@ export default function CardInfo(props) {
       closeEditModal();
     }
   }
-
   return (
     <div
       onClick={closeEditModal}
@@ -127,7 +126,7 @@ export default function CardInfo(props) {
           id="editSave"
           onClick={() => {
             let updatedCards = cards.filter((card) => card.id !== currentId);
-            console.log(cards.filter((card) => card.id === currentId));
+
             saveData(updatedCards, "Expenses");
             setCards(updatedCards);
             closeEditModal();

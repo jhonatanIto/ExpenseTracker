@@ -5,6 +5,7 @@ import Modal from "./Modal";
 import Calendar from "./header/Calendar";
 import CardInfo from "./CardInfo";
 import { CardsContext } from "../contex/CardsContex";
+import { v4 as uuid } from "uuid";
 
 function Home() {
   const [{ month, year, day }, setnichi] = useState({
@@ -17,7 +18,6 @@ function Home() {
   const [cards, setCards] = useState([]);
   const [fixedCards, setFixedCards] = useState([]);
   const [modalDisplay, setModalDisplay] = useState("none");
-  const [id, setId] = useState(0);
   const [name, setName] = useState("");
   const [amount, setAmount] = useState();
   const [type, setType] = useState("Fixed");
@@ -26,6 +26,34 @@ function Home() {
   const [totalExpense, setTotalExpense] = useState();
   const [totalIncome, setTotalIncome] = useState();
   const [formattedDate, setFormattedDate] = useState("");
+
+  function addAllFixed(fixed) {
+    setCards((prev) => {
+      const currenttMonth = `${year}-${String(month + 1).padStart(2, "0")}`;
+      const exist = prev.some(
+        (c) => c.name === fixed.name && c.date.slice(0, 7) === currenttMonth
+      );
+      if (exist) return prev;
+
+      const newCardDate = { ...fixed, date: formattedDate, id: uuid() };
+      const update = [...prev, newCardDate];
+      saveData(update, "Expenses");
+      return update;
+    });
+
+    setFixedCards((prev) => {
+      const updateFixedCards = prev.map((c) =>
+        c.id === fixed.id
+          ? {
+              ...c,
+              hiddenIn: [...c.hiddenIn, `${year}-${month}`],
+            }
+          : c
+      );
+      saveData(updateFixedCards, "fixedCards");
+      return updateFixedCards;
+    });
+  }
 
   function monthlyTotal(cardss) {
     const map = {};
@@ -122,9 +150,6 @@ function Home() {
       const dbF = savedFixed ? JSON.parse(savedFixed) : [];
       setCards(db);
       setFixedCards(dbF);
-
-      const maxId = db.length > 0 ? Math.max(...db.map((c) => c.id)) : 0;
-      setId(maxId + 1);
     } catch (e) {
       console.log("cannot read localstorage", e);
     }
@@ -144,9 +169,8 @@ function Home() {
         today={today}
       />
       <Main
+        addAllFixed={addAllFixed}
         saveData={saveData}
-        setId={setId}
-        id={id}
         setFixedCards={setFixedCards}
         formattedDate={formattedDate}
         chartData={chartData}
@@ -182,8 +206,6 @@ function Home() {
         closeModal={closeModal}
         modalDisplay={modalDisplay}
         saveData={saveData}
-        id={id}
-        setId={setId}
         today={today}
         cardDate={cardDate}
       />
