@@ -73,15 +73,18 @@ const Login = () => {
 
   const handleGoogleSuccess = async (credentialRes) => {
     try {
-      const res = await fetch("http://localhost:3000/googleAuth", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+      const res = await fetch(
+        "expensebackend-production-799f.up.railway.app/googleAuth",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            googleToken: credentialRes.credential,
+          }),
         },
-        body: JSON.stringify({
-          googleToken: credentialRes.credential,
-        }),
-      });
+      );
 
       const data = await res.json();
 
