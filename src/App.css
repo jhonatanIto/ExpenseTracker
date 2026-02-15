@@ -22,7 +22,7 @@ body,
   display: none;
 }
 .pig {
-  width: 120px;
+  width: 100px;
   margin-left: 50px;
 }
 .tabsContainer {
@@ -70,8 +70,10 @@ body,
   border-radius: 160px;
   background: #8dc2ff;
   transition: 0.5s;
-  box-shadow: inset 0 8px 60px rgba(0, 0, 0, 0.1),
-    inset 0 8px 8px rgba(0, 0, 0, 0.1), inset 0 -4px 4px rgba(0, 0, 0, 0.1);
+  box-shadow:
+    inset 0 8px 60px rgba(0, 0, 0, 0.1),
+    inset 0 8px 8px rgba(0, 0, 0, 0.1),
+    inset 0 -4px 4px rgba(0, 0, 0, 0.1);
   cursor: pointer;
 }
 .darkButtonBall {
@@ -178,23 +180,32 @@ body,
   margin: 0 auto;
   flex-wrap: wrap;
 }
-
+.leftAllContainer {
+  width: 33%;
+}
 .addButtContainer {
   display: flex;
   padding-top: 10px;
   padding-bottom: 10px;
   justify-content: space-around;
-  width: 800px;
+  width: 100%;
 }
 .addButt {
   display: flex;
   justify-content: center;
   align-items: center;
   border: 2px solid rgb(156, 156, 156);
-  width: 300px;
+  width: 35%;
   font-size: 25px;
   border-radius: 10px;
   cursor: pointer;
+  transition: 0.2s;
+}
+.gasto:hover {
+  color: red;
+}
+.renda:hover {
+  color: rgb(0, 123, 255);
 }
 .fixMobile {
   display: none;
@@ -221,7 +232,7 @@ body,
 }
 .graph {
   margin-top: 70px;
-  width: 600px;
+  width: 33%;
   justify-content: center;
   display: flex;
 }
@@ -351,6 +362,7 @@ body,
 .edit:hover {
   color: white;
   background-color: #3697ff;
+  border-color: #3697ff;
 }
 .del {
   display: block;
@@ -362,6 +374,7 @@ body,
 .del:hover {
   color: white;
   background-color: rgb(255, 106, 106);
+  border-color: rgb(255, 106, 106);
 }
 .modalSave {
   display: flex;
@@ -381,7 +394,7 @@ body,
 }
 .totalContainer {
   margin-top: 0px;
-  width: 600px;
+  width: 33%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -389,8 +402,9 @@ body,
 .total {
   display: flex;
   justify-content: space-between;
-  font-size: 30px;
-  width: 400px;
+  font-size: 1.7rem;
+  font-size: 1.2vw;
+  width: 100%;
 }
 .balance {
   border-top: 1px solid rgb(120, 120, 120);
@@ -401,6 +415,7 @@ body,
   border-radius: 15px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
   margin-top: 20px;
+  width: 60%;
 }
 .cardsContainer {
   height: 860px;
@@ -439,11 +454,13 @@ body,
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
   font-size: 20px;
   margin-top: 70px;
+
+  width: 60%;
 }
 .moreInfo {
   display: flex;
   justify-content: space-between;
-  width: 400px;
+  width: 100%;
   padding: 5px;
   border-bottom: 1px solid rgb(225, 225, 225);
 }
@@ -451,7 +468,7 @@ body,
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 400px;
+  width: 100%;
   padding: 5px;
   border-bottom: 1px solid rgb(225, 225, 225);
 }
@@ -469,13 +486,53 @@ body,
 .dateInput::-webkit-calendar-picker-indicator {
   display: none;
 }
-@media (max-width: 700px) {
+
+@media (max-width: 1600px) {
+  .cardsContainer {
+    height: 450px;
+  }
+  .goodMorning {
+    font-size: 20px;
+  }
+  .main {
+    justify-content: center;
+    width: 100%;
+    flex-wrap: nowrap;
+  }
+  .totalBox {
+    width: 86%;
+  }
+  .totalInfoContainer {
+    width: 86%;
+  }
+  .addButt {
+    font-size: 1.7vw;
+  }
+  .allFixedButt {
+    font-size: 1.2vw;
+
+    padding-left: 8px;
+    padding-right: 8px;
+    transition: 0.3s;
+  }
+  .total {
+    font-size: 1.5vw;
+  }
+}
+@media (max-width: 900px) {
   .main {
     flex-direction: column;
     align-items: center;
     justify-content: center;
     flex-wrap: unset;
   }
+  .leftAllContainer {
+    width: 90%;
+  }
+  .totalContainer {
+    width: 100%;
+  }
+
   .header {
     height: 80px;
     position: relative;
@@ -520,6 +577,7 @@ body,
   }
   .profileContainer {
     width: 40px;
+    margin-right: 20px;
   }
   .calendarContainer {
     padding: 8px;
@@ -527,11 +585,10 @@ body,
   .goodMorning {
     font-size: 17px;
     font-weight: bold;
-    margin-left: 200px;
   }
   .calendarDiv {
     font-size: 17px;
-    width: 260px;
+    width: 230px;
   }
   .tab {
     font-size: 10px;
@@ -548,8 +605,10 @@ body,
     border-radius: 160px;
     background: #8dc2ff;
     transition: 0.5s;
-    box-shadow: inset 0 8px 60px rgba(0, 0, 0, 0.1),
-      inset 0 8px 8px rgba(0, 0, 0, 0.1), inset 0 -4px 4px rgba(0, 0, 0, 0.1);
+    box-shadow:
+      inset 0 8px 60px rgba(0, 0, 0, 0.1),
+      inset 0 8px 8px rgba(0, 0, 0, 0.1),
+      inset 0 -4px 4px rgba(0, 0, 0, 0.1);
     cursor: pointer;
   }
   .pig {
@@ -562,11 +621,11 @@ body,
     width: 10px;
   }
   .goodMorning {
-    margin: 0;
+    margin-left: 0;
+    margin-right: 30px;
   }
   .calendarDiv {
     margin-right: 0px;
-    width: 300px;
   }
   .calendarContainer {
     justify-content: center;
@@ -577,12 +636,9 @@ body,
     height: 25;
   }
   .addButtContainer {
-    justify-content: space-around;
-    width: 400px;
+    width: 100%;
   }
-  .addButt {
-    width: 156px;
-  }
+
   .rightSideHeader {
     margin-right: 10px;
   }
@@ -593,9 +649,12 @@ body,
     width: 20px;
     height: 20px;
   }
+  .cardsContainer {
+    width: 100%;
+  }
 
   .total {
-    width: 325px;
+    font-size: 20px;
   }
 
   .totalContainer {
@@ -606,13 +665,13 @@ body,
   }
   .cardsContainer {
     height: 300px;
-    width: 90%;
+    width: 100%;
     overflow-y: scroll;
   }
   .graph {
     margin-top: 30px;
     height: 300px;
-    width: 350px;
+    width: 98%;
   }
 
   .darkIcon {
@@ -633,14 +692,6 @@ body,
   .cardBox {
     padding: 10px;
     margin-top: 10px;
-  }
-  .moreInfo {
-    width: 325px;
-    padding: 5px;
-  }
-  .allInfo {
-    width: 325px;
-    padding: 5px;
   }
 }
 .simulationBody {

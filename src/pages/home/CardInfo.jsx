@@ -1,8 +1,10 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { CardsContext } from "../contex/CardsContex";
+import { UserContext } from "../contex/UserContext";
+import { deleteCard, fetchCards } from "../utils/fetchData";
 
 export default function CardInfo(props) {
-  const { cards, saveData, setCards, closeEditModal } = props;
+  const { closeEditModal } = props;
 
   const {
     cardDate,
@@ -24,9 +26,10 @@ export default function CardInfo(props) {
     editType,
     saveOrEdit,
     currentId,
-    setCardInfoModal,
     deleteDisplay,
   } = useContext(CardsContext);
+
+  const { setCards, token, user } = useContext(UserContext);
 
   function editAll() {
     setEdit(false);
@@ -36,29 +39,31 @@ export default function CardInfo(props) {
     setCursor("pointer");
   }
 
-  function updateCard() {
-    if (saveOrEdit === "Edit") {
-      editAll();
-    } else if (saveOrEdit === "Save" && editName !== "" && editAmount !== "") {
-      setCards((prev) => {
-        const updateCard = prev.map((card) =>
-          card.id === currentId
-            ? {
-                ...card,
-
-                name: editName,
-                amount: editAmount,
-                type: editType,
-              }
-            : card
-        );
-        saveData(updateCard, "Expenses");
-        return updateCard;
+  const visitorCardUpdate = () => {
+    setCards((prev) => {
+      const upCards = prev.map((c) => {
+        if (c.id === currentId) {
+          return {
+            ...c,
+            name: editName,
+            amount: editAmount,
+            category: editType,
+          };
+        }
+        return c;
       });
 
-      setCardInfoModal("none");
-    }
-  }
+      localStorage.setItem("Expenses", JSON.stringify(upCards));
+      return upCards;
+    });
+  };
+  const visitorCardDelete = () => {
+    setCards((prev) => {
+      const newArray = prev.filter((c) => c.id !== currentId);
+      localStorage.setItem("Expenses", JSON.stringify(newArray));
+      return newArray;
+    });
+  };
 
   function handleKeyDown(e) {
     if (e.key === "Enter") {
@@ -67,6 +72,58 @@ export default function CardInfo(props) {
       console.log("clicou enter");
     }
   }
+
+  const updateCard = async () => {
+    try {
+      const res = await fetch(`http://localhost:3000/api/cards/${currentId}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          name: editName,
+          amount: editAmount,
+          category: editType,
+          type: expenseIncome,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        console.error(data.message);
+      }
+
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const loadCards = async () => {
+    if (!token) return;
+
+    const cardData = await fetchCards(token);
+    if (!cardData) {
+      setCards([]);
+    } else {
+      setCards(cardData);
+    }
+
+    if (cardData) localStorage.setItem("Expenses", JSON.stringify(cardData));
+  };
+
+  useEffect(() => {
+    let saved = localStorage.getItem("Expenses");
+    if (saved) setCards(JSON.parse(saved) || []);
+  }, []);
+
+  useEffect(() => {
+    if (!token) return;
+    loadCards();
+  }, [token]);
+
   return (
     <div
       onClick={closeEditModal}
@@ -101,7 +158,7 @@ export default function CardInfo(props) {
             style={{
               appearance: arrow,
               cursor: cursor,
-              display: expenseIncome === "Income" ? "none" : "flex",
+              display: expenseIncome === "income" ? "none" : "flex",
             }}
             disabled={edit}
             className="selectInfo"
@@ -110,14 +167,24 @@ export default function CardInfo(props) {
             }}
             value={editType}
           >
-            <option value="Fixed">Fixed</option>
-            <option value="Food">Food</option>
-            <option value="Other">Other</option>
+            <option value="fixed">Fixed</option>
+            <option value="food">Food</option>
+            <option value="other">Other</option>
           </select>
         </div>
         <button
-          onClick={() => {
-            updateCard();
+          onClick={async () => {
+            if (saveOrEdit === "Edit") {
+              editAll();
+            } else {
+              if (user) {
+                await updateCard();
+                await loadCards();
+              } else {
+                visitorCardUpdate();
+              }
+              closeEditModal();
+            }
           }}
           className="buttons edit"
         >
@@ -125,11 +192,13 @@ export default function CardInfo(props) {
         </button>
         <button
           id="editSave"
-          onClick={() => {
-            let updatedCards = cards.filter((card) => card.id !== currentId);
-
-            saveData(updatedCards, "Expenses");
-            setCards(updatedCards);
+          onClick={async () => {
+            if (user) {
+              await deleteCard(token, currentId);
+              await loadCards();
+            } else {
+              visitorCardDelete();
+            }
             closeEditModal();
           }}
           style={{ display: deleteDisplay }}

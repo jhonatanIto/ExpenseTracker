@@ -9,6 +9,10 @@ import Error from "./pages/errorPage/Error.jsx";
 import CardsProvider from "./pages/contex/CardsContex.jsx";
 import Simulation from "./pages/interest-calculator/Simulation.jsx";
 import Converter from "./pages/converter/Converter.jsx";
+import Login from "./pages/loginPage/Login.jsx";
+import UserProvider from "./pages/contex/UserContext.jsx";
+import Profile from "./pages/profile/Profile.jsx";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +32,14 @@ const router = createBrowserRouter([
         element: <Converter />,
       },
       {
+        path: "login",
+        element: <Login />,
+      },
+      {
+        path: "profile",
+        element: <Profile />,
+      },
+      {
         path: "*",
         element: <Error />,
       },
@@ -37,8 +49,12 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <CardsProvider>
-      <RouterProvider router={router} />
-    </CardsProvider>
-  </StrictMode>
+    <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
+      <UserProvider>
+        <CardsProvider>
+          <RouterProvider router={router} />
+        </CardsProvider>
+      </UserProvider>
+    </GoogleOAuthProvider>
+  </StrictMode>,
 );

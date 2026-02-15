@@ -5,10 +5,8 @@ import TotalMenu from "./TotalMenu";
 export default function Main(props) {
   const {
     openModal,
-    cards,
-    setCards,
     fixedCards,
-    setType,
+    setCategory,
     month,
     year,
     setTotalExpense,

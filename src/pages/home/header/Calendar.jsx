@@ -1,5 +1,6 @@
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import calendar from "../../../assets/calendar.png";
+import { UserContext } from "../../contex/UserContext";
 
 export default function Calendar(props) {
   const { setnichi, year, month, today } = props;
@@ -45,9 +46,11 @@ export default function Calendar(props) {
     setnichi({ month: currMonth, year: currYear, day: currDay });
   }, [today]);
 
+  const { user } = useContext(UserContext);
+
   return (
     <div className="calendarContainer">
-      <div className="goodMorning">Welcome back!</div>
+      <div className="goodMorning"> {user?.name} Expenses</div>
       <div className="calendarDiv">
         <button className="calendarArrow" onClick={() => changeMonth(-1)}>
           {" "}

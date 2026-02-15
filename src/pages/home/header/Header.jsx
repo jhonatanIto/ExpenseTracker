@@ -3,11 +3,16 @@ import Tabs from "./Tabs";
 import logo from "../../../assets/dollar.png";
 import profile from "../../../assets/6681204.png";
 import menuMob from "../../../assets/menu.png";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { UserContext } from "../../contex/UserContext";
 
 export default function Header(props) {
   const [displayMobile, setDisplayMobile] = useState("none");
+
+  const { user } = useContext(UserContext);
+
+  const nav = useNavigate();
   return (
     <div className="header">
       <div className="headerLeft">
@@ -27,9 +32,15 @@ export default function Header(props) {
       </div>
 
       <div className="rightSideHeader">
-        <DarkButton />
+        {/* <DarkButton /> */}
         <div>
-          <img className="profileContainer" src={profile} />
+          <img
+            onClick={() => {
+              !user ? nav("/login") : nav("/profile");
+            }}
+            className="profileContainer"
+            src={user ? user.picture : profile}
+          />
         </div>
       </div>
       <div style={{ display: displayMobile }} className="mobileMenu">

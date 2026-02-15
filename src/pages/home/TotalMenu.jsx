@@ -1,10 +1,10 @@
 import { Result } from "postcss";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { CardsContext } from "../contex/CardsContex";
+import { UserContext } from "../contex/UserContext";
 
 export default function TotalMenu(props) {
   const {
-    cards,
     month,
     year,
     setTotalExpense,
@@ -14,22 +14,29 @@ export default function TotalMenu(props) {
   } = props;
 
   const { setDisplay } = useContext(CardsContext);
+  const { cards } = useContext(UserContext);
+
+  const [selecFilt, setSelecFilt] = useState("all");
+
   let expense = cards.filter(
     (card) =>
-      card.expense === "Expense" && filterMonth(card) === `${year}-${month}`
+      card.type === "expense" && filterMonth(card) === `${year}-${month}`,
   );
   let income = cards.filter(
     (card) =>
-      card.expense === "Income" && filterMonth(card) === `${year}-${month}`
+      card.type === "income" && filterMonth(card) === `${year}-${month}`,
   );
   let fixed = cards.filter(
-    (card) => card.type === "Fixed" && filterMonth(card) === `${year}-${month}`
+    (card) =>
+      card.category === "fixed" && filterMonth(card) === `${year}-${month}`,
   );
   let food = cards.filter(
-    (card) => card.type === "Food" && filterMonth(card) === `${year}-${month}`
+    (card) =>
+      card.category === "food" && filterMonth(card) === `${year}-${month}`,
   );
   let other = cards.filter(
-    (card) => card.type === "Other" && filterMonth(card) === `${year}-${month}`
+    (card) =>
+      card.category === "other" && filterMonth(card) === `${year}-${month}`,
   );
   function addAll(price) {
     return price.length > 0
@@ -41,8 +48,8 @@ export default function TotalMenu(props) {
   }
 
   function filterMonth(card) {
-    const mont = new Date(card.date).getMonth();
-    const yearr = new Date(card.date).getFullYear();
+    const mont = new Date(card.created_at).getMonth();
+    const yearr = new Date(card.created_at).getFullYear();
     return `${yearr}-${mont}`;
   }
 
@@ -58,14 +65,26 @@ export default function TotalMenu(props) {
     <div className="totalContainer">
       <div className="totalInfoContainer">
         <button
-          onClick={() => setDisplay("All")}
+          onClick={() => {
+            setDisplay("All");
+            setSelecFilt("all");
+          }}
           className="allInfo filterExpense"
+          style={{
+            color: `${selecFilt === "all" ? "rgb(0, 153, 255)" : "black"}`,
+          }}
         >
           All
         </button>
         <div
-          onClick={() => setDisplay("Fixed")}
+          onClick={() => {
+            setDisplay("Fixed");
+            setSelecFilt("fixed");
+          }}
           className="moreInfo filterExpense"
+          style={{
+            color: `${selecFilt === "fixed" ? "rgb(0, 153, 255)" : "black"}`,
+          }}
         >
           Fixed:
           <button onClick={() => setDisplay("Fixed")} className="filterExpense">
@@ -73,8 +92,14 @@ export default function TotalMenu(props) {
           </button>
         </div>
         <div
-          onClick={() => setDisplay("Food")}
+          onClick={() => {
+            setDisplay("Food");
+            setSelecFilt("food");
+          }}
           className="moreInfo filterExpense"
+          style={{
+            color: `${selecFilt === "food" ? "rgb(0, 153, 255)" : "black"}`,
+          }}
         >
           Food:
           <button onClick={() => setDisplay("Food")} className="filterExpense">
@@ -83,8 +108,14 @@ export default function TotalMenu(props) {
           </button>
         </div>
         <div
-          onClick={() => setDisplay("Other")}
+          onClick={() => {
+            setDisplay("Other");
+            setSelecFilt("other");
+          }}
           className="moreInfo filterExpense"
+          style={{
+            color: `${selecFilt === "other" ? "rgb(0, 153, 255)" : "black"}`,
+          }}
         >
           Other:
           <button onClick={() => setDisplay("Other")} className="filterExpense">
@@ -103,7 +134,7 @@ export default function TotalMenu(props) {
         <div className="total">
           Total Expenses:
           <div style={{ color: "rgb(255, 56, 89)" }}>
-            {" -"}
+            {totalExpense > 0 ? " -" : ""}
             {Number(totalExpense).toLocaleString("en-US")}
           </div>
         </div>

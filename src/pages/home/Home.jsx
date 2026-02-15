@@ -5,7 +5,7 @@ import Modal from "./Modal";
 import Calendar from "./header/Calendar";
 import CardInfo from "./CardInfo";
 import { CardsContext } from "../contex/CardsContex";
-import { v4 as uuid } from "uuid";
+import { UserContext } from "../contex/UserContext";
 
 function Home() {
   const [{ month, year, day }, setnichi] = useState({
@@ -15,51 +15,24 @@ function Home() {
   });
 
   const { setExpenseIncome, setCardInfoModal } = useContext(CardsContext);
-  const [cards, setCards] = useState([]);
   const [fixedCards, setFixedCards] = useState([]);
   const [modalDisplay, setModalDisplay] = useState("none");
   const [name, setName] = useState("");
   const [amount, setAmount] = useState();
-  const [type, setType] = useState("Fixed");
+  const [category, setCategory] = useState("fixed");
   const [today, setToday] = useState("");
   const [cardDate, setCardDate] = useState("");
   const [totalExpense, setTotalExpense] = useState();
   const [totalIncome, setTotalIncome] = useState();
   const [formattedDate, setFormattedDate] = useState("");
 
-  function addAllFixed(fixed) {
-    setCards((prev) => {
-      const currenttMonth = `${year}-${String(month + 1).padStart(2, "0")}`;
-      const exist = prev.some(
-        (c) => c.name === fixed.name && c.date.slice(0, 7) === currenttMonth
-      );
-      if (exist) return prev;
-
-      const newCardDate = { ...fixed, date: formattedDate, id: uuid() };
-      const update = [...prev, newCardDate];
-      saveData(update, "Expenses");
-      return update;
-    });
-
-    setFixedCards((prev) => {
-      const updateFixedCards = prev.map((c) =>
-        c.id === fixed.id
-          ? {
-              ...c,
-              hiddenIn: [...c.hiddenIn, `${year}-${month}`],
-            }
-          : c
-      );
-      saveData(updateFixedCards, "fixedCards");
-      return updateFixedCards;
-    });
-  }
+  const { cards } = useContext(UserContext);
 
   function monthlyTotal(cardss) {
     const map = {};
 
     cardss.forEach((card) => {
-      const date = new Date(card.date);
+      const date = new Date(card.created_at);
       const year = date.getFullYear();
       const month = date.getMonth();
 
@@ -70,7 +43,7 @@ function Home() {
         map[year][month] = { income: 0, expense: 0 };
       }
 
-      if (card.expense === "Income") {
+      if (card.type === "income") {
         map[year][month].income += Number(card.amount);
       } else {
         map[year][month].expense += Number(card.amount);
@@ -127,7 +100,7 @@ function Home() {
     setModalDisplay("none");
     setName("");
     setAmount("");
-    setType("Fixed");
+    setCategory("fixed");
   }
 
   function closeEditModal() {
@@ -138,22 +111,12 @@ function Home() {
     setModalDisplay("flex");
     setExpenseIncome(type);
   }
+
   function saveData(cards, storage) {
     localStorage.setItem(storage, JSON.stringify(cards));
     localStorage.setItem(storage, JSON.stringify(cards));
   }
-  useEffect(() => {
-    let saved = localStorage.getItem("Expenses");
-    let savedFixed = localStorage.getItem("fixedCards");
-    try {
-      const db = saved ? JSON.parse(saved) : [];
-      const dbF = savedFixed ? JSON.parse(savedFixed) : [];
-      setCards(db);
-      setFixedCards(dbF);
-    } catch (e) {
-      console.log("cannot read localstorage", e);
-    }
-  }, []);
+
   useEffect(() => {
     const localDate = new Date().toISOString().slice(0, 10);
     setToday(localDate);
@@ -169,7 +132,6 @@ function Home() {
         today={today}
       />
       <Main
-        addAllFixed={addAllFixed}
         saveData={saveData}
         setFixedCards={setFixedCards}
         formattedDate={formattedDate}
@@ -180,10 +142,8 @@ function Home() {
         setTotalExpense={setTotalExpense}
         year={year}
         month={month}
-        setType={setType}
+        setCategory={setCategory}
         setCardDate={setCardDate}
-        cards={cards}
-        setCards={setCards}
         fixedCards={fixedCards}
         openModal={openModal}
         setModalDisplay={setModalDisplay}
@@ -195,14 +155,12 @@ function Home() {
         day={day}
         year={year}
         month={month}
-        setType={setType}
+        setCategory={setCategory}
         setAmount={setAmount}
         setName={setName}
-        type={type}
+        category={category}
         amount={amount}
         name={name}
-        cards={cards}
-        setCards={setCards}
         closeModal={closeModal}
         modalDisplay={modalDisplay}
         saveData={saveData}
@@ -211,9 +169,7 @@ function Home() {
       />
       <CardInfo
         cardDate={cardDate}
-        setCards={setCards}
         saveData={saveData}
-        cards={cards}
         closeEditModal={closeEditModal}
       />
     </>

@@ -1,16 +1,9 @@
 import { useContext } from "react";
 import { CardsContext } from "../contex/CardsContex";
+import { UserContext } from "../contex/UserContext";
 
 export default function Cards(props) {
-  const {
-    cards,
-    month,
-    year,
-    fixedCards,
-    setFixedCards,
-    saveData,
-    addAllFixed,
-  } = props;
+  const { month, year } = props;
   const {
     display,
     setCurrentId,
@@ -27,9 +20,11 @@ export default function Cards(props) {
     openCardInfo,
   } = useContext(CardsContext);
 
+  const { cards } = useContext(UserContext);
+
   const displayMonth = cards?.filter((c) => {
-    const m = new Date(c.date).getMonth();
-    const y = new Date(c.date).getFullYear();
+    const m = new Date(c.created_at).getMonth();
+    const y = new Date(c.created_at).getFullYear();
     return m === month && y === year;
   });
 
@@ -37,71 +32,18 @@ export default function Cards(props) {
     display === "All"
       ? displayMonth
       : display === "Fixed"
-      ? displayMonth.filter((card) => card.type === "Fixed")
-      : display === "Food"
-      ? displayMonth.filter((card) => card.type === "Food")
-      : display === "Other"
-      ? displayMonth.filter((card) => card.type === "Other")
-      : displayMonth;
-
-  let displayFixed = fixedCards?.filter((c) => {
-    return !c.hiddenIn?.includes(`${year}-${month}`);
-  });
+        ? displayMonth.filter((card) => card.category === "fixed")
+        : display === "Food"
+          ? displayMonth.filter((card) => card.category === "food")
+          : display === "Other"
+            ? displayMonth.filter((card) => card.category === "other")
+            : displayMonth;
 
   return (
     <>
-      {displayFixed?.map((card, index) => {
-        return (
-          <div className="fixedFlex">
-            <button
-              style={{ display: card.type === "Fixed" ? "flex" : "none" }}
-              className="fixedButt"
-              onClick={() => {
-                setFixedCards((prev) => {
-                  const updateFixedCards = prev.filter(
-                    (c) => c.name !== card.name
-                  );
-                  saveData(updateFixedCards, "fixedCards");
-                  return updateFixedCards;
-                });
-              }}
-            >
-              x
-            </button>
-            <button
-              style={{ display: card.type === "Fixed" ? "flex" : "none" }}
-              className="fixedButt"
-              onClick={() => {
-                addAllFixed(card);
-              }}
-            >
-              +
-            </button>
-            <button
-              key={index}
-              className="cardBox"
-              style={{ transform: "none", cursor: "default" }}
-            >
-              <div>{card.name}</div>
-              <div
-                style={{
-                  color:
-                    card.expense === "Expense"
-                      ? "rgb(255, 56, 89)"
-                      : "rgb(0, 153, 255)",
-                }}
-                className="cardGasto"
-              >
-                {card.expense === "Expense" ? "- " : ""}
-                {Number(card.amount).toLocaleString("en-US")}
-              </div>
-            </button>
-          </div>
-        );
-      })}
       {displayThis.map((card, index) => {
         return (
-          <div>
+          <div key={index}>
             <button
               onClick={() => {
                 openCardInfo();
@@ -113,9 +55,9 @@ export default function Cards(props) {
                 setCursor("default");
                 setEditName(card.name);
                 setEditAmount(card.amount);
-                setEditType(card.type);
-                setCardDate(card.date);
-                setExpenseIncome(card.expense);
+                setEditType(card.category);
+                setCardDate(card.created_at);
+                setExpenseIncome(card.type);
               }}
               key={index}
               className="cardBox"
@@ -124,13 +66,13 @@ export default function Cards(props) {
               <div
                 style={{
                   color:
-                    card.expense === "Expense"
+                    card.type === "expense"
                       ? "rgb(255, 56, 89)"
                       : "rgb(0, 153, 255)",
                 }}
                 className="cardGasto"
               >
-                {card.expense === "Expense" ? "- " : ""}
+                {card.type === "expense" ? "- " : ""}
                 {Number(card.amount).toLocaleString("en-US")}
               </div>
             </button>
