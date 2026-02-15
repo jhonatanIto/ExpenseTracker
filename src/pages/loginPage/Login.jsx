@@ -2,7 +2,6 @@ import { useContext, useState } from "react";
 import "./login.css";
 import { UserContext } from "../contex/UserContext";
 import { useNavigate } from "react-router-dom";
-import google from "../../assets/google.png";
 import { GoogleLogin } from "@react-oauth/google";
 
 const Login = () => {
@@ -74,7 +73,7 @@ const Login = () => {
   const handleGoogleSuccess = async (credentialRes) => {
     try {
       const res = await fetch(
-        "expensebackend-production-799f.up.railway.app/googleAuth",
+        "https://expensebackend-production-799f.up.railway.app//googleAuth",
         {
           method: "POST",
           headers: {
