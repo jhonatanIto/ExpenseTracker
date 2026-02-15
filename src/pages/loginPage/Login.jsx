@@ -73,7 +73,7 @@ const Login = () => {
   const handleGoogleSuccess = async (credentialRes) => {
     try {
       const res = await fetch(
-        "https://expensebackend-production-799f.up.railway.app//googleAuth",
+        "https://expensebackend-production-799f.up.railway.app/googleAuth",
         {
           method: "POST",
           headers: {
