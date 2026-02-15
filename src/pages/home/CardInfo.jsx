@@ -75,19 +75,22 @@ export default function CardInfo(props) {
 
   const updateCard = async () => {
     try {
-      const res = await fetch(`http://localhost:3000/api/cards/${currentId}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+      const res = await fetch(
+        `https://expensebackend-production-799f.up.railway.app/api/cards/${currentId}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            name: editName,
+            amount: editAmount,
+            category: editType,
+            type: expenseIncome,
+          }),
         },
-        body: JSON.stringify({
-          name: editName,
-          amount: editAmount,
-          category: editType,
-          type: expenseIncome,
-        }),
-      });
+      );
 
       const data = await res.json();
 

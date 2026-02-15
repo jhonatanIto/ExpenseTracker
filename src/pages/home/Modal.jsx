@@ -53,14 +53,17 @@ export default function Modal(props) {
     };
 
     try {
-      const res = await fetch("http://localhost:3000/api/cards", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+      const res = await fetch(
+        "https://expensebackend-production-799f.up.railway.app/api/cards",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(newCard),
         },
-        body: JSON.stringify(newCard),
-      });
+      );
 
       const data = await res.json();
 
