@@ -22,7 +22,7 @@ export default function Modal(props) {
   } = props;
 
   const { expenseIncome } = useContext(CardsContext);
-  const { token, setCards, user, loadCards, setLoading } =
+  const { token, setCards, user, loadCards, setLoading, loading } =
     useContext(UserContext);
 
   useEffect(() => {
@@ -161,7 +161,7 @@ export default function Modal(props) {
           </select>
         </div>
 
-        <div
+        <button
           id="save"
           onClick={async () => {
             if (user) {
@@ -172,10 +172,11 @@ export default function Modal(props) {
             }
             closeModal();
           }}
-          className="modalSave"
+          className="modalSave select-none"
+          disabled={loading}
         >
           save
-        </div>
+        </button>
       </div>
     </div>
   );

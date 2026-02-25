@@ -29,7 +29,8 @@ export default function CardInfo(props) {
     deleteDisplay,
   } = useContext(CardsContext);
 
-  const { setCards, token, user, setLoading } = useContext(UserContext);
+  const { setCards, token, user, setLoading, loading } =
+    useContext(UserContext);
 
   function editAll() {
     setEdit(false);
@@ -223,7 +224,8 @@ export default function CardInfo(props) {
               closeEditModal();
             }
           }}
-          className="buttons edit"
+          className="buttons edit select-none"
+          disabled={loading}
         >
           {saveOrEdit}
         </button>
@@ -239,7 +241,8 @@ export default function CardInfo(props) {
             closeEditModal();
           }}
           style={{ display: deleteDisplay }}
-          className="buttons del"
+          className="buttons del select-none"
+          disabled={loading}
         >
           Delete
         </button>
