@@ -1,5 +1,4 @@
 import { createContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { fetchCards } from "../utils/fetchData";
 
 export const UserContext = createContext(null);
@@ -8,6 +7,7 @@ const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(null);
   const [cards, setCards] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const savedUser = localStorage.getItem("userExpense");
@@ -45,7 +45,17 @@ const UserProvider = ({ children }) => {
 
   return (
     <UserContext.Provider
-      value={{ user, token, login, logout, cards, setCards, loadCards }}
+      value={{
+        user,
+        token,
+        login,
+        logout,
+        cards,
+        setCards,
+        loadCards,
+        setLoading,
+        loading,
+      }}
     >
       {children}
     </UserContext.Provider>

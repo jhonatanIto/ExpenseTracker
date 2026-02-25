@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react";
 import { CardsContext } from "../contex/CardsContex";
 import { UserContext } from "../contex/UserContext";
-import { deleteCard, fetchCards } from "../utils/fetchData";
+import { fetchCards } from "../utils/fetchData";
 
 export default function CardInfo(props) {
   const { closeEditModal } = props;
@@ -29,7 +29,7 @@ export default function CardInfo(props) {
     deleteDisplay,
   } = useContext(CardsContext);
 
-  const { setCards, token, user } = useContext(UserContext);
+  const { setCards, token, user, setLoading } = useContext(UserContext);
 
   function editAll() {
     setEdit(false);
@@ -75,6 +75,7 @@ export default function CardInfo(props) {
 
   const updateCard = async () => {
     try {
+      setLoading(true);
       const res = await fetch(
         `https://expensebackend-production-799f.up.railway.app/api/cards/${currentId}`,
         {
@@ -101,6 +102,39 @@ export default function CardInfo(props) {
       console.log(data);
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+  const deleteCard = async () => {
+    if (!token) return;
+
+    try {
+      setLoading(true);
+      const res = await fetch(
+        `https://expensebackend-production-799f.up.railway.app/api/cards/${currentId}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        console.error(data?.message);
+        return;
+      }
+
+      console.log(data);
+      return data;
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -197,7 +231,7 @@ export default function CardInfo(props) {
           id="editSave"
           onClick={async () => {
             if (user) {
-              await deleteCard(token, currentId);
+              await deleteCard();
               await loadCards();
             } else {
               visitorCardDelete();

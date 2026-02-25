@@ -22,7 +22,8 @@ export default function Modal(props) {
   } = props;
 
   const { expenseIncome } = useContext(CardsContext);
-  const { token, setCards, user, loadCards } = useContext(UserContext);
+  const { token, setCards, user, loadCards, setLoading } =
+    useContext(UserContext);
 
   useEffect(() => {
     setFormattedDate(
@@ -53,6 +54,7 @@ export default function Modal(props) {
     };
 
     try {
+      setLoading(true);
       const res = await fetch(
         "https://expensebackend-production-799f.up.railway.app/api/cards",
         {
@@ -74,6 +76,8 @@ export default function Modal(props) {
       console.log(data);
     } catch (error) {
       console.error(error);
+    } finally {
+      setLoading(false);
     }
   };
 

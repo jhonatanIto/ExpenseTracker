@@ -6,6 +6,7 @@ import Calendar from "./header/Calendar";
 import CardInfo from "./CardInfo";
 import { CardsContext } from "../contex/CardsContex";
 import { UserContext } from "../contex/UserContext";
+import Loading from "./Loading";
 
 function Home() {
   const [{ month, year, day }, setnichi] = useState({
@@ -172,6 +173,7 @@ function Home() {
         saveData={saveData}
         closeEditModal={closeEditModal}
       />
+      <Loading />
     </>
   );
 }
