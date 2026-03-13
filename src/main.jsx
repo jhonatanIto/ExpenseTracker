@@ -22,12 +22,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
-        children: [
-          {
-            path: "converter",
-            element: <Converter />,
-          },
-        ],
+      },
+      {
+        path: "converter",
+        element: <Converter />,
       },
       {
         path: "simulation",
