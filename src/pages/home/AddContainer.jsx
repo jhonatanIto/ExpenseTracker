@@ -66,14 +66,17 @@ export default function AddContainer(props) {
     }));
 
     try {
-      const res = await fetch("http://localhost:3000/api/cards/bulk", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+      const res = await fetch(
+        "https://expensebackend-production-799f.up.railway.app/api/cards/bulk",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ fixedCards: newCards }),
         },
-        body: JSON.stringify({ fixedCards: newCards }),
-      });
+      );
 
       const data = await res.json();
       if (!res.ok) {
