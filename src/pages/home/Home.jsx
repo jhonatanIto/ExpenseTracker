@@ -7,6 +7,7 @@ import CardInfo from "./CardInfo";
 import { CardsContext } from "../contex/CardsContex";
 import { UserContext } from "../contex/UserContext";
 import Loading from "./Loading";
+import { Outlet } from "react-router-dom";
 
 function Home() {
   const [{ month, year, day }, setnichi] = useState({
@@ -174,6 +175,7 @@ function Home() {
         closeEditModal={closeEditModal}
       />
       <Loading />
+      <Outlet />
     </>
   );
 }
