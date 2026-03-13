@@ -7,8 +7,8 @@ import { v4 as uuid } from "uuid";
 export default function AddContainer(props) {
   const { openModal, month, year, formattedDate } = props;
 
-  const { user, cards, setCards, token, loadCards } = useContext(UserContext);
-  console.log(token);
+  const { user, cards, setCards, token, loadCards, setLoading, loading } =
+    useContext(UserContext);
 
   const postAllFixed = async () => {
     const formattedMonth = String(month + 1).padStart(2, "0");
@@ -66,6 +66,7 @@ export default function AddContainer(props) {
     }));
 
     try {
+      setLoading(true);
       const res = await fetch(
         "https://expensebackend-production-799f.up.railway.app/api/cards/bulk",
         {
@@ -86,6 +87,8 @@ export default function AddContainer(props) {
       await loadCards();
     } catch (error) {
       console.error(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -93,6 +96,7 @@ export default function AddContainer(props) {
     <div className="leftAllContainer">
       <div className="addButtContainer">
         <button
+          disabled={loading}
           className="allFixedButt"
           onClick={async () => {
             await postAllFixed();
