@@ -19,8 +19,6 @@ export const fetchCards = async (token) => {
       console.error(data?.message);
       return;
     }
-
-    console.log(data);
     return data;
   } catch (error) {
     console.error(error);

@@ -10,6 +10,7 @@ function Converter() {
   const [hover, setHover] = useState(false);
   const [todayExchange, setTodayExchange] = useState();
   const oneDay = 1000 * 60 * 60 * 24;
+
   async function fetchDollarToYen() {
     const cached = localStorage.getItem("usd_jpy_rate");
 
@@ -17,8 +18,6 @@ function Converter() {
       const { rate, timestamp } = JSON.parse(cached);
 
       if (Date.now() - timestamp < oneDay) {
-        console.log("using cache");
-        console.log(Number(rate).toFixed(0));
         setTodayExchange(Number(rate).toFixed(0));
         setYenValue(Number(rate).toFixed(0));
         return;

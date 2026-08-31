@@ -66,14 +66,6 @@ export default function CardInfo(props) {
     });
   };
 
-  function handleKeyDown(e) {
-    if (e.key === "Enter") {
-      updateCard();
-      closeEditModal();
-      console.log("clicou enter");
-    }
-  }
-
   const updateCard = async () => {
     try {
       setLoading(true);
@@ -150,6 +142,19 @@ export default function CardInfo(props) {
 
     if (cardData) localStorage.setItem("Expenses", JSON.stringify(cardData));
   };
+
+  async function handleKeyDown(e) {
+    if (e.key === "Enter") {
+      if (user) {
+        await updateCard();
+        await loadCards();
+      } else {
+        visitorCardUpdate();
+      }
+      closeEditModal();
+      console.log("clicou enter");
+    }
+  }
 
   useEffect(() => {
     let saved = localStorage.getItem("Expenses");

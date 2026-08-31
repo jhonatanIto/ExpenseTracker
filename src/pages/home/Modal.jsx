@@ -35,9 +35,15 @@ export default function Modal(props) {
     );
   }, [year, month, day]);
 
-  function handleKeyDown(e) {
+  async function handleKeyDown(e) {
     if (e.key === "Enter") {
-      addCard();
+      if (user) {
+        console.log("entrou aq  ui");
+        await postCardData();
+        await loadCards();
+      } else {
+        addCard();
+      }
       closeModal();
     }
   }
