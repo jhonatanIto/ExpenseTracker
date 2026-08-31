@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import "./converter.css";
 import senyen from "../../assets/1000yen.jpg";
 import onedollar from "../../assets/dollarr.png";
+
 function Converter() {
-  const [dollarValue, setDollarValue] = useState("1");
+  const [dollarValue, setDollarValue] = useState(1);
   const [yenValue, setYenValue] = useState();
   const [isFocused, setIsFocused] = useState(false);
   const [hover, setHover] = useState(false);
@@ -26,7 +27,7 @@ function Converter() {
     console.log("fetching API");
 
     const response = await fetch(
-      "https://api.exchangerate.host/live?access_key=037b529c6c1985c3958886d852954930"
+      "https://api.exchangerate.host/live?access_key=037b529c6c1985c3958886d852954930",
     );
     const data = await response.json();
     const rate = data.quotes["USDJPY"];
@@ -36,7 +37,7 @@ function Converter() {
       JSON.stringify({
         rate,
         timestamp: Date.now(),
-      })
+      }),
     );
     setTodayExchange(rate);
   }
